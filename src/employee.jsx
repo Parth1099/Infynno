@@ -16,7 +16,13 @@ import {
 // import { Link } from "react-router-dom";
 // import { border } from "@mui/system";
 
-export function Employee() {
+export function Employee({
+  editdata,
+  seteditdata,
+  update,
+  apidata,
+  setapidata,
+}) {
   /*  let { id } = useParams(); */
   const [emp, setEmployee] = useState([]);
 
@@ -30,12 +36,9 @@ export function Employee() {
     );
   }
 
-  function editFun(tid)
-  {
-    console.log(tid)
+  function editFun(tid) {
+    console.log(tid);
   }
-
-
 
   useEffect(() => {
     const fetchdata = async () => {
@@ -47,9 +50,17 @@ export function Employee() {
       const newdata = data.data;
       console.log(newdata);
       setEmployee(newdata);
+      setapidata(newdata);
     };
-    fetchdata();
+    // fetchdata();
+    if (update) {
+      setEmployee(apidata);
+    } else {
+      fetchdata();
+    }
   }, []);
+
+
 
   return (
     <Box
@@ -105,14 +116,18 @@ export function Employee() {
                         to={`/edit/${data.id}`}
                         style={{ textDecoration: "none" }}
                       >
-                      <Button
-                        variant="contained"
-                        color="secondary"
-                        sx={{ mr: 2 }}
-                        onClick={() => editFun(data.id)}
-                      >
-                        Edit
-                      </Button>
+                        <Button
+                          variant="contained"
+                          color="secondary"
+                          sx={{ mr: 2 }}
+                          // onClick={() => editFun(data.id)}
+                          onClick={() => {
+                            // console.log("kbjbj");
+                            seteditdata({ ...data });
+                          }}
+                        >
+                          Edit
+                        </Button>
                       </Link>
 
                       <Button
