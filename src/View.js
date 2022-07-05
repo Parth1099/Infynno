@@ -10,21 +10,49 @@ import { useEffect, useState } from "react";
 import { Box } from "@mui/system";
 import { Button } from "@mui/material";
 
-export function View() {
+export function View({ editdata, seteditdata, update, apidata, setapidata }) {
   let { id } = useParams();
   const [emp, setEmployee] = useState([]);
 
   console.log(id);
+
+  // useEffect(() => {
+  //   const fetchdata = async () => {
+  //     const url = `https://reqres.in/api/users/${id}`;
+  //     const res = await axios.get(url);
+  //     const data = res.data;
+  //     const newdata = data.data;
+  //     console.log(newdata);
+  //     setEmployee(newdata);
+  //   };
+  //   fetchdata();
+  // }, []);
+  const fetchdata = async () => {
+    const url = `https://reqres.in/api/users/${id}`;
+    const res = await axios.get(url);
+    const data = res.data;
+    const newdata = data.data;
+    console.log(newdata);
+    setEmployee(newdata);
+   
+  };
+
   useEffect(() => {
-    const fetchdata = async () => {
-      const url = `https://reqres.in/api/users/${id}`;
-      const res = await axios.get(url);
-      const data = res.data;
-      const newdata = data.data;
-      console.log(newdata);
-      setEmployee(newdata);
-    };
-    fetchdata();
+
+    console.log("is update", update);
+    if (update) {
+      console.log("Apidata",apidata);
+      const newData1 = apidata.filter((data) => {
+        if (data.id == id) {
+          return data;
+        }
+      });
+      console.log("View data",newData1)
+      setEmployee(...newData1);
+    } 
+    else {
+      fetchdata();
+    }
   }, []);
 
   return (
@@ -49,7 +77,7 @@ export function View() {
             sx={{ height: 200, width: 200, borderRadius: 50, m: "auto" }}
           />
           <CardContent align="center">
-            <h3>{emp.id}</h3>
+            <h3>{emp?.id && emp.id}</h3>
             <h2>{emp.email}</h2>
             {emp.first_name}
             {emp.last_name}

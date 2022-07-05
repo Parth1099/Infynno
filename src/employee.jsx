@@ -12,9 +12,9 @@ import {
   TableRow,
   Box,
   Button,
+  ButtonBase,
 } from "@mui/material";
-// import { Link } from "react-router-dom";
-// import { border } from "@mui/system";
+
 
 export function Employee({
   editdata,
@@ -54,7 +54,9 @@ export function Employee({
     };
     // fetchdata();
     if (update) {
+      console.log(update + "From list")
       setEmployee(apidata);
+      console.log(apidata)
     } else {
       fetchdata();
     }
@@ -73,6 +75,10 @@ export function Employee({
         boxShadow: "2px 2px 8px 8px grey",
       }}
     >
+      <Link to={"/addform"} >
+      <Button variant="contained" sx={{mr : "700px" ,mt :2}}>Add Data</Button>
+
+      </Link>
       <TableContainer>
         <h1>Employee Data </h1>
         <Table>

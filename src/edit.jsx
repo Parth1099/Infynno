@@ -50,30 +50,45 @@ export function Edit({
   }, []);
   return (
     <>
-      <>
-        <input type="text" value={edit.email} />
-      </>
+      <>{/* <input type="text" value={edit.email} /> */}</>
       <Box sx={{ width: 500, m: "auto", mt: 15 }}>
         <h1>Edit Form</h1>
         <form style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          <TextField
-            id=""
-            fullWidth
-            value={formdata.id}
-            onChange={handleChange}
-          />
+          
 
           <TextField
             id=""
             fullWidth
+            label="First Name"
             value={formdata.first_name}
             onChange={handleChange}
             name="first_name"
+            variant="outlined"
           />
 
-          <TextField id="" fullWidth value={formdata.email} />
+          <TextField
+            id=""
+            label="Last Name"
+            fullWidth
+            value={formdata.last_name}
+            onChange={handleChange}
+            name="last_name"
+          />
 
-          <Button variant="contained" color="primary" onClick={()=>submitdata()}>
+          <TextField
+            id=""
+            fullWidth
+            label="Email"
+            value={formdata.email}
+            onChange={handleChange}
+            name="email"
+          />
+
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => submitdata()}
+          >
             Update
           </Button>
         </form>
