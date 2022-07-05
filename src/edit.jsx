@@ -51,7 +51,6 @@ export function Edit({ apidata, setapidata }) {
     <>
       <>{/* <input type="text" value={edit.email} /> */}</>
       <Box sx={{ width: 500, m: "auto", mt: 15 }}>
-      
         <Formik
           initialValues={{
             email: !id ? "" : apidata[id - 1].email,
@@ -75,108 +74,65 @@ export function Edit({ apidata, setapidata }) {
           }}
         >
           {({ errors, touched }) => (
-            <Form
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "30px",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "100vh",
-              }}
-            >
-              <h2>Add</h2>
-              <div
-                style={{
-                  display: "flex",
-                  gap: "30px",
-                  width: "40%",
-                  alignItems: "center",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    gap: "20px",
-                    width: "80%",
-                    alignItems: "center",
-                  }}
+            <Form>
+              <h3>Add Data</h3>
+
+              <div>
+                <Field
+                  placeHolder="First name"
+                  variant="outlined"
+                  name="first_name"
+                  style={{ width: "400px" }}
+                  type="text"
+                />
+                {touched.first_name && errors.first_name ? (
+                  <div style={{ color: "red" }}>{errors.first_name}</div>
+                ) : null}
+              </div>
+              <br></br>
+
+              <div>
+                <Field
+                  placeHolder="Last name"
+                  variant="outlined"
+                  name="last_name"
+                  style={{ width: "400px" }}
+                  type="text"
+                />
+                {touched.last_name && errors.last_name ? (
+                  <div style={{ color: "red" }}>{errors.last_name}</div>
+                ) : null}
+              </div>
+
+              <br></br>
+              <div>
+                <Field
+                  placeHolder="Email"
+                  variant="outlined"
+                  type="text"
+                  style={{ width: "400px" }}
+                  name="email"
+                />
+                {touched.email && errors.email ? (
+                  <div style={{ color: "red" }}>{errors.email}</div>
+                ) : null}
+              </div>
+              <br></br>
+              <div style={{ marginLeft: "80px" }}>
+                <Button
+                  variant="contained"
+                  type="submit"
+                  sx={{ mr: 2, width: "100px" }}
                 >
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "1px",
-                      width: "50%",
-                    }}
-                  >
-                    <Field
-                      placeHolder="First name"
-                      variant="outlined"
-                      name="first_name"
-                      type="text"
-                    />
-                    {touched.first_name && errors.first_name ? (
-                      <div style={{ color: "red" }}>{errors.first_name}</div>
-                    ) : null}
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "1px",
-                      width: "50%",
-                    }}
-                  >
-                    <Field
-                      placeHolder="Last name"
-                      variant="outlined"
-                      name="last_name"
-                      type="text"
-                    />
-                    {touched.last_name && errors.last_name ? (
-                      <div style={{ color: "red" }}>{errors.last_name}</div>
-                    ) : null}
-                  </div>
-                </div>
-              </div>
-
-              <div
-                style={{
-                  display: "flex",
-                  gap: "30px",
-                  width: "40%",
-                  alignItems: "center",
-                }}
-              >
-                <div>
-                  <Field
-                    placeHolder="Email"
-                    variant="outlined"
-                    style={{ width: "400px" }}
-                    type="text"
-                    name="email"
-                  />
-                  {touched.email && errors.email ? (
-                    <div style={{ color: "red" }}>{errors.email}</div>
-                  ) : null}
-                </div>
-              </div>
-
-              <div
-                style={{
-                  display: "flex",
-                  gap: "30px",
-                  width: "30%",
-                  justifyContent: "center",
-                }}
-              >
-                <Button variant="contained" type="submit">
-                  Add
+                  Submit
                 </Button>
                 <Link to={"/"} style={{ textDecoration: "none" }}>
-                  <Button variant="contained" color="error">
-                    cancel
+                  <Button
+                    variant="contained"
+                    color="error"
+                    sx={{ width: "100px" }}
+                  >
+                    Cancel
                   </Button>
                 </Link>
               </div>

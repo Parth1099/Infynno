@@ -16,17 +16,7 @@ export function View({ editdata, seteditdata, update, apidata, setapidata }) {
 
   console.log(id);
 
-  // useEffect(() => {
-  //   const fetchdata = async () => {
-  //     const url = `https://reqres.in/api/users/${id}`;
-  //     const res = await axios.get(url);
-  //     const data = res.data;
-  //     const newdata = data.data;
-  //     console.log(newdata);
-  //     setEmployee(newdata);
-  //   };
-  //   fetchdata();
-  // }, []);
+ 
   const fetchdata = async () => {
     const url = `https://reqres.in/api/users/${id}`;
     const res = await axios.get(url);
