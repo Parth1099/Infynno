@@ -10,9 +10,12 @@ export default function Addform({ edit,
   setapidata,
   update,
   setupdate}) {
+    debugger;
     const navigate = useNavigate();
     setupdate(true)
     console.log(update + "From Add form")
+    
+
 
   const schema = Yup.object().shape({
     fname: Yup.string()
@@ -44,8 +47,8 @@ export default function Addform({ edit,
                       }}
                       validationSchema={schema}
                       onSubmit={(values) => {
-                        // console.log(values);
-                        // debugger;
+                        console.log(values);
+                      
                         setapidata([...apidata,{id : apidata.length + 1 ,email : values.email , first_name : values.fname,last_name :values.lname}])
                         console.log(apidata)
                         navigate("/");

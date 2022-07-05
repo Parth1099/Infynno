@@ -15,20 +15,17 @@ import {
   ButtonBase,
 } from "@mui/material";
 
-
 export function Employee({
-  editdata,
   seteditdata,
-  update,
+
   apidata,
   setapidata,
 }) {
-  /*  let { id } = useParams(); */
   const [emp, setEmployee] = useState([]);
 
   function removeFun(tid) {
-    setEmployee(
-      emp.filter((val) => {
+    setapidata(
+      apidata.filter((val) => {
         if (val.id !== tid) {
           return val;
         }
@@ -39,30 +36,6 @@ export function Employee({
   function editFun(tid) {
     console.log(tid);
   }
-
-  useEffect(() => {
-    const fetchdata = async () => {
-      //   const url = "http://45.90.108.154/fake-api/employee/api/v1/employees";
-      const url = "https://reqres.in/api/users";
-      //   const url = `http://45.90.108.154/fake-api/employee/api/v1/employee/${id}`;
-      const res = await axios.get(url);
-      const data = res.data;
-      const newdata = data.data;
-      console.log(newdata);
-      setEmployee(newdata);
-      setapidata(newdata);
-    };
-    // fetchdata();
-    if (update) {
-      console.log(update + "From list")
-      setEmployee(apidata);
-      console.log(apidata)
-    } else {
-      fetchdata();
-    }
-  }, []);
-
-
 
   return (
     <Box
@@ -75,9 +48,10 @@ export function Employee({
         boxShadow: "2px 2px 8px 8px grey",
       }}
     >
-      <Link to={"/addform"} >
-      <Button variant="contained" sx={{mr : "700px" ,mt :2}}>Add Data</Button>
-
+      <Link to={"/addform"}>
+        <Button variant="contained" sx={{ mr: "700px", mt: 2 }}>
+          Add Data
+        </Button>
       </Link>
       <TableContainer>
         <h1>Employee Data </h1>
@@ -93,10 +67,10 @@ export function Employee({
             </TableRow>
           </TableHead>
           <TableBody>
-            {emp.length == 0 ? (
+            {apidata.length == 0 ? (
               <p>No record</p>
             ) : (
-              emp?.map((data, index) => {
+              apidata?.map((data, index) => {
                 return (
                   <TableRow key={index}>
                     {/* <Link to={`/employee/${emp_id.id}`} /> */}
@@ -126,9 +100,7 @@ export function Employee({
                           variant="contained"
                           color="secondary"
                           sx={{ mr: 2 }}
-                          // onClick={() => editFun(data.id)}
                           onClick={() => {
-                            // console.log("kbjbj");
                             seteditdata({ ...data });
                           }}
                         >
@@ -154,5 +126,3 @@ export function Employee({
     </Box>
   );
 }
-
-// export  Employee;
