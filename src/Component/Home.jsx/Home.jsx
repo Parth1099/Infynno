@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { BsFillPlayFill, BsPlusLg } from "react-icons/bs";
-import { BiPlusMedical } from "react-icons/bi";
 import "./home.css";
 
 export default function Home() {
@@ -14,13 +13,13 @@ export default function Home() {
     const res = await axios.get(url);
     const data = res.data;
     setMovieData(data);
-    console.log(data);
+    // console.log(data);
 
     const imgapi = await axios.get(
       "https://api.themoviedb.org/3/tv/112836/images?api_key=2de9acb8797cc1e7f20a96cdc13bdb0a"
     );
     setMovieImg(imgapi.data);
-    console.log(imgapi.data);
+    // console.log(imgapi.data);
   }
   useEffect(() => {
     fetchmovie();
@@ -51,12 +50,17 @@ export default function Home() {
 
           <div className="logo-button">
             <button className="watch-btn">
-              WATCH <BsFillPlayFill size={35} />{" "}
+              WATCH <BsFillPlayFill size={35} />
             </button>
 
             <button className="list-btn">
               MY LIST <BsPlusLg size={18} />
             </button>
+          </div>
+
+          <div className="release-div">
+            {/* <p>{movie?.release_date}</p> */}
+            <p>{new Date(movie?.release_date).getFullYear()}</p>
           </div>
         </div>
       </div>

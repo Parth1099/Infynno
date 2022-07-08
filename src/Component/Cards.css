@@ -1,0 +1,113 @@
+/* Movie Watch CSS */
+.moviewatch-main {
+  width: 1200px;
+  /* height: 399px; */
+  background: rgba(11, 15, 22, 0.47);
+  box-shadow: 8px -8px 10px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(25px);
+  justify-content: center;
+  border-radius: 24px;
+  margin-left: 125px !important;
+}
+.moviewatch-head {
+  /* background-color: greenyellow; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px !important;
+}
+
+.moviewatch-title {
+  display: flex;
+  font-family: "Montserrat";
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 18px;
+  font-style: normal;
+  /* padding-top: 25px !important;  */
+}
+.filter-btn {
+  width: 139px;
+  display: flex;
+  height: 40px;
+  background: #5c5c5c;
+  border-radius: 30px;
+  justify-content: center;
+  align-items: center;
+  color: white;
+
+  /* text-align: center; */
+}
+.filter-btn button {
+  font-weight: 700;
+  border-style: none;
+}
+.cards-div-main {
+  display: flex;
+  flex-direction: row;
+  gap: 42px;
+  padding: 20px !important;
+  overflow: hidden;
+}
+
+/* Cards */
+.card-sub-main {
+  width: 168px;
+  /* height: 302px; */
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+.card-img-div {
+  display: flex;
+}
+.card-img-div img {
+  width: 168px;
+  height: 237px;
+
+  filter: drop-shadow(6px 6px 6px rgba(0, 0, 0, 0.36));
+  border-radius: 7px;
+}
+.card-heading {
+  display: flex;
+  width: 167px;
+  height: 20px;
+  font-size: 16px !important;
+  white-space: nowrap;
+  overflow: hidden;
+  color: white;
+  font-weight: 700;
+}
+
+.year-div {
+  color: white;
+  display: flex;
+  font-size: 11px;
+  gap: 5px;
+  font-weight: 700;
+
+  flex-direction: column;
+}
+.card-icon {
+  width: 28px !important;
+  /* height: 14px; */
+}
+.card-last-div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-icon-main {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  color: #ffc907;
+}
+.year-right {
+  color: white;
+  margin-top: 28px !important;
+  display: flex;
+  gap: 8px;
+}
