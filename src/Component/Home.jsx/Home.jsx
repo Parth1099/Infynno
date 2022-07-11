@@ -29,14 +29,14 @@ export default function Home() {
       <div className="container-fluid img-div">
         <div className="img-back-main">
           <img
-            src={`https://image.tmdb.org/t/p/original/${movieimg?.backdrops[4].file_path}`}
+            src={`https://image.tmdb.org/t/p/original/${movieimg?.backdrops[5].file_path}`}
           />
         </div>
 
         <div className="logo-side-main">
           <div className="logo-sub">
             <img
-              src={`https://image.tmdb.org/t/p/original/${movieimg?.logos[1].file_path}`}
+              src={`https://image.tmdb.org/t/p/original/${movieimg?.logos[6].file_path}`}
             />
           </div>
 

@@ -1,0 +1,37 @@
+.footer-main {
+  background-color: #161214;
+  height: 389px;
+  display: flex;
+  justify-content: center;
+  gap: 99px;
+  padding-top: 80px !important;
+ 
+}
+
+.world-btn {
+  background-color: #362f33;
+  color: white;
+  display: flex;
+  gap: 13px;
+  align-items: center;
+  justify-content: center;
+  padding: 5px !important;
+  border-style: none;
+}
+.nav-list {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+}
+.nav-list li {
+  font-family: "Roboto";
+}
+.social-btn
+{
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+}
+.footer-main h6{
+    font-family : 'monospace' !important;
+}
