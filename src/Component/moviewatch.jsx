@@ -23,15 +23,16 @@ export default function Moviewatch(props) {
 
   let settings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     // speed: 1500,
     slidesToShow: 6 ,
     // initialSlide: 0,
     arrows:false,
-    autoplay: true,
+    autoplay: false,
     speed: 2000,
     autoplaySpeed: 2000,
     cssEase: "linear",
+  
  
 
     slidesToScroll: 3

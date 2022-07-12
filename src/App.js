@@ -13,7 +13,7 @@ function App() {
      {/* <Cards/> */}
      <Moviewatch type={"popular"} title={"MOVIES YOU MUST WATCH"}/>
      <Moviewatch type={"285/similar"} title={"RECOMMENDED FOR YOU"}/>
-     <Moviewatch type={"top_rated"} title={"BOLLYWOOD CLASSICS"}/>
+     <Moviewatch type={"top_rated"} title={"BOLLYWOOD  CLASSICS"}/>
   
      <Footer/>
     </>
