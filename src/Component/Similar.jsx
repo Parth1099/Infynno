@@ -1,6 +1,5 @@
 import axios from "axios";
-import ReactPlayer from 'react-player/youtube'
-
+import {Link } from "react-router-dom";
 import "./Cards.css";
 
 import React, { useEffect, useState } from "react";
@@ -21,7 +20,7 @@ export default function Cast(id) {
   }
   useEffect(() => {
     fetchwatchmovie();
-  }, []);
+  }, [id.id]);
 
   return (
     <>
@@ -35,8 +34,16 @@ export default function Cast(id) {
         {similar.map((similar) => {
           return <>
         <div className="morelike-img-main">
-          <img src={`https://image.tmdb.org/t/p/original/${similar?.backdrop_path}`}></img>
-        </div></>})}
+          <Link to={`/moviedetails/${similar.id}`}><img src={`https://image.tmdb.org/t/p/original/${similar?.backdrop_path}`} />
+          <div className="overlay">
+          <p className="text">{similar.title}</p>
+        </div>
+        </Link>
+        </div>
+
+        
+        
+        </>})}
       ;
       </div>
 </div>

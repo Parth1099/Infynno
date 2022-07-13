@@ -25,7 +25,7 @@ export default function Moviedetails(id) {
   }
   useEffect(() => {
     fetchmovie();
-  }, []);
+  }, [id.id]);
   return (
     <>
       <div className="container-fluid img-div">

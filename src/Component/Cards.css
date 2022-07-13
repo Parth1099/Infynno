@@ -37,25 +37,33 @@
   /* padding-top: 25px !important;  */
 }
 .filter-btn {
-  width: 139px;
   display: flex;
-  height: 40px;
-  background: #5c5c5c;
-  border-radius: 30px;
   justify-content: center;
   align-items: center;
-  color: white;
-
+  /* color: white; */
+  /* font-weight: 800 !important; */
+  
   /* text-align: center; */
 }
 .filter-btn button {
+  background: #5c5c5c;
+  width: 139px;
+  height: 40px;
+  display: flex;
+  gap: 10px;
+  font-size: 16px;
+
+  justify-content: center;
+  align-items: center;
+  padding: 20px !important;
+  border-radius: 30px;
+  color: white;
   font-weight: 700;
   border-style: none;
 }
+
 .cards-div-main {
-  /* display: flex; */
-  /* flex-direction: row; */
-  /* gap: 42px; */
+  
   padding: 20px !important;
   overflow: hidden;
 }
@@ -63,7 +71,6 @@
 /* Cards */
 .card-sub-main {
   width: 168px;
-  /* height: 302px; */
   display: flex;
   gap: 20px;
   flex-direction: column;
@@ -121,17 +128,20 @@
   gap: 8px;
 }
 .rec-btn {
-  width: 106px;
+  /* width: 106px;
+  height: 40px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 40px;
-
+ padding: 20px !important;
   background: #5c5c5c;
   border-radius: 30px;
   color: white;
 }
 .lan-btn {
   display: flex;
-  /* flex-direction: column; */
-  /* margin-top: 20px !important; */
+ 
   padding: 20px 0px !important;
   gap: 10px;
 }
@@ -234,8 +244,15 @@
   background: #5e47a1;
   border-radius: 21.5px;
   color: white;
+  
+  /* margin-top: -30px !important; */
   font-weight: 700;
-  margin-left: 30px;
+}
+.cast-show-more 
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Similar Page */
@@ -248,8 +265,7 @@
   /* background-color: #5E47A1; */
 }
 .morelike-main {
-  /* height: 200px; */
-  /* margin-left: 125px !important; */
+
   width: 1200px;
   margin: 70px 0px 55px 125px !important;
   /* margin-top: 55px !important; */
@@ -263,6 +279,45 @@
 .morelike-img-main img {
   width: 289px;
   height: 172px;
+  display: block;
   filter: drop-shadow(6px 6px 6px rgba(0, 0, 0, 0.36));
   border-radius: 7px;
+}
+
+.morelike-img-main{
+  width: 100%;
+  position: relative;
+  height: 100%;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background :rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: .5s ease;
+}
+
+.morelike-img-main:hover .overlay {
+  height: 100%;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.text-Desc{
+
 }

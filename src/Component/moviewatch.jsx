@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import React, { useEffect, useState } from "react";
 import Cards from "./Cards";
 import { BsChevronDown } from "react-icons/bs";
+import {FaChevronDown } from "react-icons/fa";
 import "./Cards.css";
 
 export default function Moviewatch(props) {
@@ -53,11 +54,9 @@ export default function Moviewatch(props) {
             </div>
             <div className="filter-btn">
               <button
-                class="btn dropdown-toggle"
                 type="button"
-                //   data-toggle="dropdown"
               >
-                Filters
+                Filters <FaChevronDown/>
               </button>
             </div>
           </div>
@@ -70,14 +69,14 @@ export default function Moviewatch(props) {
               {/* {props.type === "popular" ? <><p>{props.title}</p></> : ""} */}
             </div>
             <div className="lan-btn" style={{ marginTop: "20px" }}>
-              <button className="rec-btn" style={{ background: "red" }}>
+              <button className="rec-btn" style={{ background: "#E43109" }}>
                 Hindi
               </button>
               <button className="rec-btn">Bengali</button>
               <button className="rec-btn">Marathi</button>
               <button className="rec-btn">Hindi</button>
               <button className="rec-btn">Telugu</button>
-              <button className="rec-btn" style={{ background: "red" }}>
+              <button className="rec-btn" style={{ background: "#E43109" }}>
                 Tamil
               </button>
               <button className="rec-btn">Malayalam</button>
