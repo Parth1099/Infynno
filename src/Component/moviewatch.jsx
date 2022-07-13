@@ -25,17 +25,15 @@ export default function Moviewatch(props) {
     dots: false,
     infinite: true,
     // speed: 1500,
-    slidesToShow: 6 ,
+    slidesToShow: 6,
     // initialSlide: 0,
-    arrows:false,
+    arrows: false,
     autoplay: false,
     speed: 2000,
     autoplaySpeed: 2000,
     cssEase: "linear",
-  
- 
 
-    slidesToScroll: 3
+    slidesToScroll: 3,
   };
   return (
     <div className="container">
@@ -97,20 +95,18 @@ export default function Moviewatch(props) {
         )}
 
         <div className="cards-div-main">
-
           {/* <Cards/> */}
-          
-              <Slider {...settings}>
-          {watchmovie.map((movie) => {
-            return (
-              <>
-                {/* <p> {movie.overview}</p> */}
-                <Cards movies={movie} /> 
-              </>
-            );
-          })}
+
+          <Slider {...settings}>
+            {watchmovie.map((movie) => {
+              return (
+                <>
+                  {/* <p> {movie.overview}</p> */}
+                  <Cards movies={movie} />
+                </>
+              );
+            })}
           </Slider>
-         
         </div>
 
         <div className="container text-center mt-5 mb-5 showmore-btn-main">

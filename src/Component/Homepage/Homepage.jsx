@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import {useParams} from "react-router-dom"
 import { BsFillPlayFill, BsPlusLg } from "react-icons/bs";
+
 import "./home.css";
 
-export default function Home() {
+export default function Homepage() {
   const [movie, setMovieData] = useState();
   const [movieimg, setMovieImg] = useState();
+
+  // let {id} = useParams();
+  // console.log(id , "Movie Id ");
 
   async function fetchmovie() {
     const url =

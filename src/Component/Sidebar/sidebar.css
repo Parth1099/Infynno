@@ -1,0 +1,24 @@
+#main-sidebar{
+    position: fixed;
+    margin-top: 32px !important;
+    display: flex;
+    flex-direction: column;
+    gap:35px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px 26px 26px 0px ;
+    font-size: 30px;
+    max-width: fit-content;
+    padding: 29px !important;
+    color: #BCA5FF;
+    background: linear-gradient(2.87deg, #130B29 9.89%, #5436A9 100%, #5E47A1 100%);
+    z-index: 1;
+}
+
+#main-sidebar a{
+    color: #BCA5FF;
+}
+
+#main-sidebar a:hover{
+    color: #ffffff;
+}

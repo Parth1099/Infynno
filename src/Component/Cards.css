@@ -152,10 +152,117 @@
   display: flex;
 }
 
-.slick-track{
-  display: flex ;
+.slick-track {
+  display: flex;
 }
-.slick-slide
-{
+.slick-slide {
   padding-inline: 20px;
+}
+
+/* Cast Css */
+.cast-main {
+  /* width: 100%; */
+  /* height: 298px; */
+  display: flex;
+  padding: 20px !important;
+  /* background: grey; */
+  gap: 104px;
+
+  margin-left: 125px !important;
+  background: rgba(11, 15, 22, 0.47);
+  box-shadow: 8px -8px 10px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(15px);
+
+  border-radius: 24px;
+}
+.trailor-main {
+  width: 400px;
+  color: white;
+  /* padding: 10px !important; */
+}
+.trailor-main h6 {
+  font-weight: 800 !important;
+}
+.crew-cast-main {
+  display: flex;
+  width: 700px;
+  flex-direction: column;
+  gap: 8px;
+  color: white;
+  font-weight: 800;
+}
+.crew-main {
+  display: flex;
+  gap: 72px;
+  color: white;
+  overflow: hidden;
+}
+.crew-img-main img {
+  width: 110px;
+  height: 145px;
+  border: 1px solid #ffffff;
+  border-radius: 9px;
+  overflow: hidden;
+ 
+}
+
+.crew-name p {
+  font-size: 14px !important;
+  overflow: hidden;
+  white-space: nowrap;
+  color: white;
+  text-overflow: ellipsis;
+  width: 100px;
+  font-weight: 700;
+}
+.crew-name {
+  white-space: nowrap;
+  overflow: hidden;
+}
+.crew-name-sub p {
+  font-size: 14px !important;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100px;
+  font-weight: 700;
+  color: #a9a9a9;
+}
+.cast-show-more button {
+  width: 181px;
+  height: 43px;
+  background: #5e47a1;
+  border-radius: 21.5px;
+  color: white;
+  font-weight: 700;
+  margin-left: 30px;
+}
+
+/* Similar Page */
+.morelike-sub {
+  display: flex;
+
+  gap: 28px;
+
+  overflow: hidden;
+  /* background-color: #5E47A1; */
+}
+.morelike-main {
+  /* height: 200px; */
+  /* margin-left: 125px !important; */
+  width: 1200px;
+  margin: 70px 0px 55px 125px !important;
+  /* margin-top: 55px !important; */
+  color: white;
+  /* padding: 10px !important; */
+  font-weight: 800;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.morelike-img-main img {
+  width: 289px;
+  height: 172px;
+  filter: drop-shadow(6px 6px 6px rgba(0, 0, 0, 0.36));
+  border-radius: 7px;
 }

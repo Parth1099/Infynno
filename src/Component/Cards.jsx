@@ -1,5 +1,6 @@
 import React from "react";
 import { FaImdb } from "react-icons/fa";
+import {Link} from "react-router-dom";
 import { FiEye } from "react-icons/fi";
 import { AiTwotoneHeart } from "react-icons/ai";
 
@@ -8,7 +9,7 @@ export default function Cards({ movies }) {
     <div className="container card-main">
       <div className="card-sub-main">
         <div className="card-img-div">
-          <img src={`https://image.tmdb.org/t/p/w185/${movies?.poster_path}`} />
+         <Link  to={`moviedetails/${movies.id}`}> <img src={`https://image.tmdb.org/t/p/w185/${movies?.poster_path}`}  alt="img"/></Link>
         </div>
         <div className="card-heading">
           <p>{movies?.original_title}</p>

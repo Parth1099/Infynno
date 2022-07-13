@@ -1,21 +1,24 @@
-import Cards from "./Component/Cards";
-import Footer from "./Component/Footer/Footer";
-import Home from "./Component/Home.jsx/Home";
-import Moviewatch from "./Component/moviewatch";
+import Home from "./Home";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Moviedetails from "./Component/Moviedetails";
 import Navbar from "./Component/Navbar/Navbar";
-
+import Footer from "./Component/Footer/Footer";
+import Moviedetailsmain from "./Component/Moviedetailsmain";
+import Sidebar from "./Component/Sidebar/Sidebar";
 
 function App() {
   return (
     <>
-     <Navbar/>
-     <Home/>
-     {/* <Cards/> */}
-     <Moviewatch type={"popular"} title={"MOVIES YOU MUST WATCH"}/>
-     <Moviewatch type={"285/similar"} title={"RECOMMENDED FOR YOU"}/>
-     <Moviewatch type={"top_rated"} title={"BOLLYWOOD  CLASSICS"}/>
-  
-     <Footer/>
+      {/* <Home /> */}
+      <Navbar/>
+      <Sidebar/>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" exact element={<Home />}></Route>
+          <Route path="/moviedetails/:id" exact element={<Moviedetailsmain />}></Route>
+        </Routes>
+      </BrowserRouter>
+      <Footer/>
     </>
   );
 }
