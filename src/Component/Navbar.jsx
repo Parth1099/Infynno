@@ -1,11 +1,9 @@
 import React from "react";
-import { IoLogoGooglePlaystore } from "react-icons/io5";
 import { BiBell } from "react-icons/bi";
 
 export default function Navbar() {
   return (
- 
-    <section className="h-[60px] bg-nav-rgba flex justify-center text-white fixed top-0 left-0 right-0 z-[100]">
+    <section className="h-[60px] bg-nav-rgba flex justify-center text-white ">
       <div className="main flex items-center justify-around gap-[226px]">
         <div className="flex items-center gap-[50px]">
           <div className="w-[154px]">
@@ -16,7 +14,7 @@ export default function Navbar() {
               <li className="text-active-rgba">HOME</li>
               <li>SCHEDULE</li>
               <li>
-                SHOP{" "}
+                SHOP
                 <sup className="bg-active-rgba text-white p-[1px] rounded-[10%]">
                   NEW
                 </sup>

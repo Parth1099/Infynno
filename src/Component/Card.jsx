@@ -1,47 +1,60 @@
 import React from "react";
 
-export default function Card() {
+export default function Card({ datamatches }) {
+  console.log(datamatches, "card");
   return (
     <>
-      <section className="relative w-[340px] h-[200px] group">
+      <section className="relative w-[340px] h-[240px] group">
         <div className="w-[340px] relative">
           <img
-            className=" absolute  w-[340px] h-[100px] border-solid rounded-t-2xl"
+            className=" absolute  w-[340px] border-solid rounded-t-2xl"
             src="https://images.fancode.com/eyJrZXkiOiJza2lsbHVwLXVwbG9hZHMvcHJvZC1pbWFnZXMvMjAyMi8wNy9JbmRpYS10b3VyLW9mLUVuZ2xhbmRfT0RJXzAyLmpwZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsImhlaWdodCI6NzUsIndpZHRoIjoyNDYsInBvc2l0aW9uIjoidG9wIn19fQ=="
             alt="img"
           ></img>
           <div className="absolute bg-gradient-to-t from-[#000000e6] to-[#00000000] border-solid rounded-t-2xl  w-[340px] h-[100px]"></div>
 
-          <label className="uppercase left-0 mx-[50px] text-[10px]  text-white tracking-[1.4px] absolute top-[60px]  ">
-            3rd ODI India tour of England, 2022
+          <label className="uppercase left-[8px] mx-[40px] text-[10px]  text-white tracking-[1.4px] leading-[1px] absolute top-[60px] whitespace-nowrap  ">
+            {datamatches.round} {datamatches.league.name} ,
+            {datamatches.season.name}
           </label>
         </div>
-        <div className="middle-btn absolute z-[10] top-[80px] left-[120px]">
+        <div className="middle-btn flex justify-center absolute z-[100] top-[80px] left-0 right-0 m-auto ">
           <button
-            className="uppercase m-auto bg-slate-50 absolute  left-[] h-[32px] border-solid rounded-[28px] w-fit text-[14px] tracking-[1.4px] font-[600] pl-[12px] pr-[12px] text-[#FF5000]
-              "
+            className={`uppercase  ${
+              datamatches.live === true
+                ? "bg-[#FF5000] text-[white]"
+                : "bg-slate-50 text-[#FF5000]"
+            } absolute border-solid  text-[14px] tracking-[1.4px] whitespace-nowrap font-[600] leading-[1] rounded-[30px] px-[12px] py-[10px]
+              `}
           >
-            preview
+            {datamatches.live === true ? <p>Wath Now</p> : <p>Result</p>}
           </button>
         </div>
         {/* bottom */}
-        <div className="bottom-main absolute top-[100px] w-[340px] h-[100px] border-solid border-grey border rounded-b-2xl  ">
+        <div className="bottom-main absolute top-[100px] w-[340px] z-50 bg-white border-solid border-grey border rounded-b-2xl">
           <div className="flex flex-col">
-            <div className="w-[340px] flex justify-between">
+            <div className="w-[340px] flex justify-between pt-4 pr-4 pl-4 p-2">
               {/* 1 */}
               <div className="flex gap-3">
-                <div className="flex flex-col gap-2 justify-center items-center p-3">
+                <div className="flex flex-col gap-2 justify-center items-center">
                   <img
                     className="h-[32px] w-[32px]"
-                    src="https://d13ir53smqqeyp.cloudfront.net/flags/cr-flags/FC-ENG@2x.png"
+                    src={datamatches.localteam.image_path}
                     alt="img"
                   ></img>
-                  <span className="text-[10px] tracking-[1.4px]">ENG</span>
+                  <span className="text-[10px] tracking-[1.4px]">
+                    {datamatches.localteam.code}
+                  </span>
                 </div>
 
-                <div className="pt-4">
-                  <h2 className="font-[600] text-[14px]">259/10</h2>
-                  <p className="text-[12px] text-[grey]">45.5 Overs</p>
+                <div className="mt-2">
+                  <h2 className="font-[600] text-[14px]">
+                    {datamatches.runs[0]?.score}/{" "}
+                    {datamatches?.runs[0]?.wickets}
+                  </h2>
+                  <p className="text-[12px] text-[grey]">
+                    {datamatches.runs[0]?.overs} Overs
+                  </p>
                 </div>
               </div>
               {/* 2 */}
@@ -53,32 +66,40 @@ export default function Card() {
                 <div className="w-[2px] h-[15px] bg-[#DCDCDC]"></div>
               </div>
               <div className="flex gap-3">
-                <div className="pt-4">
-                  <h2 className="font-[600] text-[14px]">261/5</h2>
-                  <p className="text-[12px] text-[grey]">42.1 Overs</p>
+                <div className="mt-2">
+                  <h2 className="font-[600] flex justify-end text-[14px] items-end">
+                    261/5
+                  </h2>
+                  <p className="text-[12px] text-[grey]">
+                    {datamatches.runs[0]?.overs} Overs
+                  </p>
                 </div>
-                <div className="flex flex-col gap-2 justify-center items-center p-3">
+                <div className="flex flex-col gap-2 justify-center items-center">
                   <img
                     className="h-[32px] w-[32px]"
-                    src="https://d13ir53smqqeyp.cloudfront.net/flags/cr-flags/FC-IND@2x.png"
+                    src={datamatches.visitorteam.image_path}
                   ></img>
-                  <span className="text-[10px] tracking-[1.4px]">IND</span>
+                  <span className="text-[10px] tracking-[1.4px]">
+                    {datamatches.visitorteam.code}
+                  </span>
                 </div>
               </div>
             </div>
             <div className="text-center left-0 right-0">
               <p className="text-[12px] tracking-[0.24px]">
-                India Won by 5 Wickets
+                {datamatches.note}
               </p>
             </div>
           </div>
         </div>
-
-        <div className=" bg-[#DCDCDC] text-center invisible border-grey border rounded-b-2xl group-hover:visible">
-          asdasd
+        <div className="bg-[#f0f1f4] absolute top-[180px] text-[12px] pb-[5px] pt-[20px] w-[340px] z-[1] text-center items-center hidden border-grey border rounded-b-2xl group-hover:block">
+          More Cricket
         </div>
       </section>
       {/* hover */}
+      {/* <div className="bg-[#DCDCDC] h-[20px] w-[340px] hidden z-1  border-grey border rounded-b-2xl peer-hover:block">
+          asdasd
+        </div> */}
     </>
   );
 }
