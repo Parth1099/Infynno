@@ -10,8 +10,8 @@ function App() {
     <>
          <Navbar/>
         
-         {/* <Slidernew/> */}
-         <Scorecard/>
+         <Slidernew/>
+         {/* <Scorecard/> */}
         <br/>
         <br/>
         <br/>

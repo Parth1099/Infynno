@@ -3,7 +3,7 @@ import React from "react";
 export default function Card() {
   return (
     <>
-      <section className="relative w-[340px] h-[200px] peer">
+      <section className="relative w-[340px] h-[200px] group">
         <div className="w-[340px] relative">
           <img
             className=" absolute  w-[340px] h-[100px] border-solid rounded-t-2xl"
@@ -74,11 +74,11 @@ export default function Card() {
           </div>
         </div>
 
-      </section>
-      {/* hover */}
-        <div className=" bg-[#DCDCDC]  h-[20px] w-[340px] text-center invisible   border-grey border rounded-b-2xl peer-hover:visible">
+        <div className=" bg-[#DCDCDC] text-center invisible border-grey border rounded-b-2xl group-hover:visible">
           asdasd
         </div>
+      </section>
+      {/* hover */}
     </>
   );
 }
