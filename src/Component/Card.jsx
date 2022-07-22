@@ -1,7 +1,23 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Card({ datamatches }) {
-  console.log(datamatches, "card");
+  // console.log(datamatches, "Finish Card");
+
+  const [localSore] = datamatches.runs.filter((data) => {
+    if (datamatches.localteam.id === data.team_id) {
+      return data;
+    }
+  });
+  // console.log(localSore, "card");
+  
+  const [visitorScore] = datamatches.runs.filter((data) => {
+    if (datamatches.visitorteam.id === data.team_id) {
+      return data;
+    }
+  });
+  // console.log(visitorScore, "Visitor");
+
   return (
     <>
       <section className="relative w-[340px] h-[240px] group">
@@ -18,7 +34,8 @@ export default function Card({ datamatches }) {
             {datamatches.season.name}
           </label>
         </div>
-        <div className="middle-btn flex justify-center absolute z-[100] top-[80px] left-0 right-0 m-auto ">
+        <Link to={`scoredetails/${datamatches.id}`}>
+        <div className="middle-btn flex justify-center absolute z-[100] top-[80px] left-0 right-0 m-auto">
           <button
             className={`uppercase  ${
               datamatches.live === true
@@ -30,6 +47,7 @@ export default function Card({ datamatches }) {
             {datamatches.live === true ? <p>Wath Now</p> : <p>Result</p>}
           </button>
         </div>
+          </Link>
         {/* bottom */}
         <div className="bottom-main absolute top-[100px] w-[340px] z-50 bg-white border-solid border-grey border rounded-b-2xl">
           <div className="flex flex-col">
@@ -49,11 +67,10 @@ export default function Card({ datamatches }) {
 
                 <div className="mt-2">
                   <h2 className="font-[600] text-[14px]">
-                    {datamatches.runs[0]?.score}/{" "}
-                    {datamatches?.runs[0]?.wickets}
+                    {localSore?.score}/{localSore?.wickets}
                   </h2>
                   <p className="text-[12px] text-[grey]">
-                    {datamatches.runs[0]?.overs} Overs
+                    {localSore?.overs} Overs
                   </p>
                 </div>
               </div>
@@ -68,10 +85,10 @@ export default function Card({ datamatches }) {
               <div className="flex gap-3">
                 <div className="mt-2">
                   <h2 className="font-[600] flex justify-end text-[14px] items-end">
-                    261/5
+                    {visitorScore?.score} / {visitorScore?.wickets}
                   </h2>
                   <p className="text-[12px] text-[grey]">
-                    {datamatches.runs[0]?.overs} Overs
+                    {visitorScore?.overs} Overs
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 justify-center items-center">
@@ -96,10 +113,7 @@ export default function Card({ datamatches }) {
           More Cricket
         </div>
       </section>
-      {/* hover */}
-      {/* <div className="bg-[#DCDCDC] h-[20px] w-[340px] hidden z-1  border-grey border rounded-b-2xl peer-hover:block">
-          asdasd
-        </div> */}
+      
     </>
   );
 }

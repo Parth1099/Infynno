@@ -2,11 +2,8 @@ import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import { HiArrowRight, HiArrowLeft } from "react-icons/hi";
 import Slider from "react-slick";
-import { base_url, api_token, all_include } from "../Config.js";
-import axios from "axios";
-import Fixed from "./Fixed";
 
-  const settings = {
+const settings = {
     dots: true,
     infinite: true,
     speed: 500,
@@ -32,12 +29,13 @@ import Fixed from "./Fixed";
       <div
         style={{
           fontSize: "60px",
-          color: "white",
+          color: "black",
+          
         }}
       ></div>
     ),
   };
-
+  
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;
     return (
@@ -49,7 +47,7 @@ import Fixed from "./Fixed";
           background: "white",
           height: "48px",
           top: "95px",
-
+  
           width: "48px",
           overflow: "hidden",
           borderRadius: "50%",
@@ -65,7 +63,7 @@ import Fixed from "./Fixed";
       </div>
     );
   }
-
+  
   function SamplePrevArrow(props) {
     const { className, style, onClick } = props;
     return (
@@ -93,55 +91,16 @@ import Fixed from "./Fixed";
     );
   }
 
-export default function Slidernew() {
-  const [matchdata, setMatchData] = useState();
-  const [matchfinished, setFinished] = useState(null);
-  const [upcoming,setUpcoming] = useState(null);
-
-  async function fetchMatchData() {
-    const url = `${base_url}${api_token}&include=localteam,visitorteam,season,runs,league`;
-    const {status,data} = await axios.get(url);
-    // const data = res.data;
-    // console.log(data.data.splice(10,20));
-    if(status === 200)
-    {
-      setMatchData(data.data.slice(45,55));
-      
-    }
-
-    // To Matched Finish
-    const finish = data.data.filter((datafinish) => {
-      if(datafinish.live == false ){
-        return datafinish;
-      }
-    });
-    setFinished(finish);
-    // console.log(finish,"Finish");
-
-
-    const upcomingone = data.data.filter((dataupcome) => {
-      if(dataupcome.status ===  "Aban." )
-      {
-        return dataupcome;
-      }
-    });
-    setUpcoming(upcomingone);
-    // console.log(upcomingone,"Upcoming Data");
-  
-  }
-
-  useEffect(() => {
-    fetchMatchData();
-  }, []);
-
+export default function Fixed(props) {
+    // console.log(props,"Fixed Page")
   return (
     <>
-      <section className="h-[166px] bg-nav-rgba flex justify-center mb-[150px]">
+        <section className="h-[166px] flex justify-center mb-[150px]">
         <div className="w-[1100px] ml-[55px] flex flex-col gap-[16px] px-[16px] pt-[20px] ">
-          <p className="text-white text-[20px] font-[600]">Featured Matches</p>
+          <p className=" text-[20px] font-[600]">{props.title}</p>
           <div className="">
             <Slider {...settings}>
-              {matchdata?.map((matchdata) =>{
+              {props.data?.map((matchdata) =>{
                 return(
                   <>
               <Card datamatches ={matchdata} />
@@ -153,13 +112,6 @@ export default function Slidernew() {
           </div>
         </div>
       </section>
-
-    
-      <Fixed title ="Finished Matches" data={matchfinished} />
-      <Fixed title="Upcoming Matches" data={upcoming}/>
-
-
-      
     </>
-  );
+  )
 }
