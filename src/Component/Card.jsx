@@ -4,15 +4,15 @@ import { Link } from "react-router-dom";
 export default function Card({ datamatches }) {
   // console.log(datamatches, "Finish Card");
 
-  const [localSore] = datamatches.runs.filter((data) => {
-    if (datamatches.localteam.id === data.team_id) {
+  const [localSore] = datamatches?.runs.filter((data) => {
+    if (datamatches?.localteam.id === data?.team_id) {
       return data;
     }
   });
   // console.log(localSore, "card");
   
-  const [visitorScore] = datamatches.runs.filter((data) => {
-    if (datamatches.visitorteam.id === data.team_id) {
+  const [visitorScore] = datamatches?.runs.filter((data) => {
+    if (datamatches?.visitorteam.id === data?.team_id) {
       return data;
     }
   });

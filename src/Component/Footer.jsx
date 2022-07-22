@@ -8,7 +8,7 @@ import { FaFacebookF } from "react-icons/fa";
 export default function Footer() {
   return (
     <>
-      <section className=" bg-nav-rgba mt-6 flex flex-col justify-center text-white items-center">
+      <section className=" bg-nav-rgba mt-[80%] flex flex-col justify-center text-white items-center">
         <div className="w-full pt-[32px] pb-[33px] border-b-[1px] border-[#282828] border-solid flex justify-center">
           <img
             className="w-[154px]"
