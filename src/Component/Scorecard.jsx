@@ -16,6 +16,9 @@ export default function Scorecard() {
   const [localbat, setLocalBat] = useState([]);
   const [visitorbat, setVisitorBat] = useState([]);
 
+  const [localbow, setLocalBow] = useState([]);
+  const [visitorbow, setVisitorBow] = useState([]);
+
   async function fetchscore() {
     const url = base_url + "/" + id + api_token + "&" + all_include;
     const { data, status } = await axios.get(url);
@@ -23,6 +26,7 @@ export default function Scorecard() {
     if (status === 200) {
       setScore(data.data);
     }
+    
 
     // LocalTeam Score
     const [localsc] = data?.data?.runs.filter((datanew) => {
@@ -48,7 +52,7 @@ export default function Scorecard() {
       }
     });
     setLocalBat(localbatscore);
-    console.log("Local Bat Score Data :", localbatscore);
+    // console.log("Local Bat Score Data :", localbatscore);
 
     //VisitorBat Data
     const visitorbatsc = data?.data?.batting.filter((visitorsc) => {
@@ -57,20 +61,44 @@ export default function Scorecard() {
           return visitorsc;
       }
     })
-    setVisitorBat(visitorsc);
-    console.log("Visitor Team Bat :",visitorbatsc);
+    setVisitorBat(visitorbatsc);
+    // console.log(score,"score")
+
+  // LocalTeam Bowler Filter
+  const localbowler = data?.data?.bowling.filter((localbw) => {
+      if(data?.data?.visitorteam.id === localbw?.team_id)
+      {
+        return localbw;
+      }
+    })
+    setLocalBow(localbowler);
+
+
+    // VisitorTeam Bowler Filter 
+    const visitorbowler = data?.data?.bowling.filter((visitorbw => {
+      if(data?.data?.localteam.id === visitorbw?.team_id)
+      {
+        return visitorbw;
+      }
+    }))
+    setVisitorBow(visitorbowler);
+    
 
   }
-
+  
+  // console.log("Localbat Data",localbat);
+  console.log("localrbowler Data",localbow);
+  console.log("Visitorbowler Data",visitorbow);
   useEffect(() => {
     fetchscore();
-  }, []);
 
+  }, []);
+  
   return (
     <>
       <section className="flex justify-center">
         <div className="flex-col justify-center">
-          <div className="w-[700px] mt-[75px] flex flex-col gap-4">
+          <div className="w-[700px] mt-[40px] flex flex-col gap-4">
             <div className="score-main flex justify-between items-center">
               <div>
                 <div className="text-[11px] flex">
@@ -131,13 +159,14 @@ export default function Scorecard() {
               <div className="text-[14px] text-[#787878] px-[35px] ">
                 <p>Squad</p>
               </div>
-              <div className="text-[14px] text-[#787878] px-[35px] ">
+              {/* <div className="text-[14px] text-[#787878] px-[35px] ">
                 <p>Highlights</p>
-              </div>
+              </div> */}
             </section>
           </div>
 
-          <Dropscore />
+          <Dropscore teamcode ={score?.localteam.code} score={score} teamscore={localscore} Bat={localbat} Bowl={localbow} />
+          <Dropscore teamcode ={score?.visitorteam.code} score={score} teamscore={visitorscore} Bat={visitorbat} Bowl={visitorbow}/>
         </div>
       </section>
     </>
