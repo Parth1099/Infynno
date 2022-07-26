@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 
-export default function Dropscore({ teamcode, score, teamscore, Bat, Bowl }) {
+export default function Dropscore({ teamcode, score, teamscore, Bat, Bowl ,Extra }) {
   
   const [dropDown, setDropDown] = useState(false);
 
@@ -23,7 +23,7 @@ export default function Dropscore({ teamcode, score, teamscore, Bat, Bowl }) {
                 className={`${
                   dropDown ? "rotate-180 duration-500" : "duration-500"
                 }`}
-                color="#ffb999"
+                color="#ffb999" 
                 size={28}
               />
             </div>
@@ -94,10 +94,10 @@ export default function Dropscore({ teamcode, score, teamscore, Bat, Bowl }) {
           </div>
           <div className="flex gap-[5px] items-center">
             <span className="text-[14px] text-[#141414] font-[600] tracking-[0.25px]">
-              13
+              {Extra?.wide+Extra?.noball_balls+Extra?.bye+Extra?.leg_bye+Extra?.penalty+Extra?.wickets}
             </span>
             <div className="pt-[2.5px] text-[12px] text-[#787878] leading-[1.33] font-[500] tracking-[0.4px]">
-              <p>(b 4, lb 2, nb 1, w 8, p 0)</p>
+              <p>(b {Extra?.bye} , lb{Extra?.leg_bye} , nb {Extra?.noball_balls}, w {Extra?.wide})</p>
             </div>
           </div>
         </section>
@@ -200,10 +200,10 @@ export default function Dropscore({ teamcode, score, teamscore, Bat, Bowl }) {
         </div>
         {Bat?.map((bat, index) => {
           return (
-            <div>
+            <div  key={index}>
               {bat?.fow_balls > 0 && (
                 <div
-                  key={index}
+                 
                   className="flex justify-between p-[10px] mx-[10px] border-b-[1px] border-solid border-[#f5f5f5]"
                 >
                   <div className="flex flex-col">

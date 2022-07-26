@@ -18,6 +18,11 @@ export default function Scorecard() {
 
   const [localbow, setLocalBow] = useState([]);
   const [visitorbow, setVisitorBow] = useState([]);
+  const [localextra,setLocalExtra] = useState([]);
+  const [visitorextra,setVisitorExtra]= useState([]);
+
+
+
 
   async function fetchscore() {
     const url = base_url + "/" + id + api_token + "&" + all_include;
@@ -82,13 +87,34 @@ export default function Scorecard() {
       }
     }))
     setVisitorBow(visitorbowler);
+
+    //LocalTeam Extra : 
+    const tlocalextra = data?.data?.scoreboards?.filter((ex) =>{
+      if(data?.data?.localteam.id === ex?.team_id)
+      { 
+        return ex;
+      }
+    })
+    setLocalExtra(tlocalextra[0]) ;
+
+    //Visitor Team Extra
+    const tvisitorextra = data?.data?.scoreboards?.filter((ex) => {
+      if(data?.data?.visitorteam.id === ex?.team_id)
+      {
+        return ex;
+      }
+    })
+    setVisitorExtra(tvisitorextra[0]);
+
+
     
 
   }
-  
+  console.log("Local Team Extra Data : ", localextra)
+  console.log("Visitor Team Extra Data : ", visitorextra)
   // console.log("Localbat Data",localbat);
-  console.log("localrbowler Data",localbow);
-  console.log("Visitorbowler Data",visitorbow);
+  // console.log("localrbowler Data",localbow);
+  // console.log("Visitorbowler Data",visitorbow);
   useEffect(() => {
     fetchscore();
 
@@ -165,8 +191,8 @@ export default function Scorecard() {
             </section>
           </div>
 
-          <Dropscore teamcode ={score?.localteam.code} score={score} teamscore={localscore} Bat={localbat} Bowl={localbow} />
-          <Dropscore teamcode ={score?.visitorteam.code} score={score} teamscore={visitorscore} Bat={visitorbat} Bowl={visitorbow}/>
+          <Dropscore teamcode ={score?.localteam.code} score={score} teamscore={localscore} Bat={localbat} Bowl={localbow} Extra={localextra} />
+          <Dropscore teamcode ={score?.visitorteam.code} score={score} teamscore={visitorscore} Bat={visitorbat} Bowl={visitorbow} Extra={visitorextra}/>
         </div>
       </section>
     </>
