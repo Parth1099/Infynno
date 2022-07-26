@@ -124,7 +124,7 @@ export default function Scorecard() {
     <>
       <section className="flex justify-center">
         <div className="flex-col justify-center">
-          <div className="w-[700px] mt-[40px] flex flex-col gap-4">
+          <div className="w-[700px] mt-[30px] flex flex-col gap-4">
             <div className="score-main flex justify-between items-center">
               <div>
                 <div className="text-[11px] flex">

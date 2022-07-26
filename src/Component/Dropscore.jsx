@@ -60,7 +60,7 @@ export default function Dropscore({ teamcode, score, teamscore, Bat, Bowl ,Extra
                   <p>{bat?.batsman?.fullname}</p>
                 </div>
                 <div className="text-[11px] text-[#787878] leading-[2.27] tracking-[0.3px]">
-                  B Ben Stokes
+                  <p>{bat?.catch_stump_player_id ? (`c ${bat?.catchstump?.fullname}`) : ""} {bat?.bowling_player_id ? (`b ${bat?.bowler?.fullname}`) : "Not Out"}</p>
                 </div>
               </div>
               <table>
