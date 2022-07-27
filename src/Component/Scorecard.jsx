@@ -4,6 +4,8 @@ import axios from "axios";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 import { base_url, api_token, all_include } from "../Config.js";
 import Dropscore from "./Dropscore.jsx";
+import { Audio } from  'react-loader-spinner'
+
 
 export default function Scorecard() {
   let { id } = useParams();
@@ -112,9 +114,7 @@ export default function Scorecard() {
   }
   console.log("Local Team Extra Data : ", localextra)
   console.log("Visitor Team Extra Data : ", visitorextra)
-  // console.log("Localbat Data",localbat);
-  // console.log("localrbowler Data",localbow);
-  // console.log("Visitorbowler Data",visitorbow);
+ 
   useEffect(() => {
     fetchscore();
 
@@ -122,6 +122,7 @@ export default function Scorecard() {
   
   return (
     <>
+    
       <section className="flex justify-center">
         <div className="flex-col justify-center">
           <div className="w-[700px] mt-[30px] flex flex-col gap-4">
@@ -171,7 +172,7 @@ export default function Scorecard() {
 
             <section className="flex justify-between  border-t-[1px] border-b-[1px] border-solid border-[#e6e6e6] py-[14px] ">
               <div className="text-[14px] text-[#787878] px-[35px] ">
-                <p>Fantacy</p>
+                <p>Fantasy</p>
               </div>
               <div className="text-[14px] text-[#787878] px-[35px] ">
                 <p>Info</p>

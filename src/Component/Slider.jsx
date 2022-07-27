@@ -5,6 +5,8 @@ import Slider from "react-slick";
 import { base_url, api_token, all_include } from "../Config.js";
 import axios from "axios";
 import Fixed from "./Fixed";
+import { Oval } from  'react-loader-spinner'
+
 
   const settings = {
     dots: true,
@@ -136,11 +138,13 @@ export default function Slidernew() {
 
   return (
     <>
+      {matchdata ?  (<>
       <section className="h-[166px] bg-nav-rgba flex justify-center mb-[150px]">
         <div className="w-[1100px] ml-[55px] flex flex-col gap-[16px] px-[16px] pt-[20px] ">
           <p className="text-white text-[20px] font-[600]">Featured Matches</p>
           <div className="">
             <Slider {...settings}>
+            
               {matchdata?.map((matchdata) =>{
                 return(
                   <>
@@ -153,12 +157,23 @@ export default function Slidernew() {
           </div>
         </div>
       </section>
-
     
       <Fixed title ="Finished Matches" data={matchfinished} />
       <Fixed title="Upcoming Matches" data={upcoming}/>
+            </>)
 
 
+      : <div className="flex justify-center items-center h-[500px]"><Oval
+    height = "80"
+    width = "80"
+    radius = "9"
+    color = 'grey'
+    ariaLabel = 'three-dots-loading'     
+    wrapperStyle
+    wrapperClass
+  /></div>
+            }
+          
       
     </>
   );

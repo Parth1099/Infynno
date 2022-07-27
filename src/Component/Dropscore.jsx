@@ -57,7 +57,7 @@ export default function Dropscore({ teamcode, score, teamscore, Bat, Bowl ,Extra
             >
               <div className="flex flex-col">
                 <div className="text-[14px] text-[#0081ff] tracking-[0.25px]">
-                  <p>{bat?.batsman?.fullname}</p>
+                  <p>{bat?.batsman?.fullname} {bat?.batsman?.position?.name === "Wicketkeeper" ? ("(wk)") : bat?.batsman?.position?.name === "Captain" ? "(c)" : ""}</p>
                 </div>
                 <div className="text-[11px] text-[#787878] leading-[2.27] tracking-[0.3px]">
                   <p>{bat?.catch_stump_player_id ? (`c ${bat?.catchstump?.fullname}`) : ""} {bat?.bowling_player_id ? (`b ${bat?.bowler?.fullname}`) : "Not Out"}</p>
