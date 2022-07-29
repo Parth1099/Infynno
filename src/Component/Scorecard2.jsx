@@ -1,39 +1,112 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
+import { base_url, api_token, all_include } from "../Config.js";
 import Dropscore from "./Dropscore.jsx";
-import { useSelector, useDispatch } from "react-redux";
-
 import { RotatingLines } from "react-loader-spinner";
-import { fetchScoreData } from "../Slice/ScoreCardSlice.js";
 
 export default function Scorecard() {
-  const dispatch = useDispatch();
-  const {
-    score,
-    localscore,
-    visitorscore,
-    localbat,
-    visitorbat,
-    localbow,
-    visitorbow,
-    localextra,
-    visitorextra,
-  } = useSelector((state) => state.ScoreCardSlice);
-
   let { id } = useParams();
-  console.log("Extra",localextra)
-  // console.log(score.length !== 0)
+
+  // console.log(id , "Scorecard id")
+
+  const [score, setScore] = useState(null);
+  const [localscore, setLocalscore] = useState([]);
+  const [visitorscore, setVisitorscore] = useState([]);
+  const [localbat, setLocalBat] = useState([]);
+  const [visitorbat, setVisitorBat] = useState([]);
+
+  const [localbow, setLocalBow] = useState([]);
+  const [visitorbow, setVisitorBow] = useState([]);
+  const [localextra, setLocalExtra] = useState([]);
+  const [visitorextra, setVisitorExtra] = useState([]);
+
+  async function fetchscore() {
+    const url = base_url + "/" + id + api_token + "&" + all_include;
+    const { data, status } = await axios.get(url);
+    // console.log(datanew,": Data From ScoreCard")
+    if (status === 200) {
+      setScore(data.data);
+    }
+
+    // LocalTeam Score
+    const [localsc] = data?.data?.runs.filter((datanew) => {
+      if (data?.data?.localteam_id === datanew?.team_id) {
+        return datanew;
+      }
+    });
+    setLocalscore(localsc);
+    // console.log(localsc, ":- Scorecard Local Score Run");
+
+    const [visitorsc] = data?.data?.runs.filter((datanew) => {
+      if (data?.data?.visitorteam_id === datanew?.team_id) {
+        return datanew;
+      }
+    });
+    setVisitorscore(visitorsc);
+    // console.log(visitorsc, "Visitor Score ");
+
+    // LocalBat Data
+    const localbatscore = data?.data?.batting.filter((localbatdata) => {
+      if (data?.data?.localteam.id === localbatdata?.team_id) {
+        return localbatdata;
+      }
+    });
+    setLocalBat(localbatscore);
+    // console.log("Local Bat Score Data :", localbatscore);
+
+    //VisitorBat Data
+    const visitorbatsc = data?.data?.batting.filter((visitorsc) => {
+      if (data?.data?.visitorteam.id === visitorsc?.team_id) {
+        return visitorsc;
+      }
+    });
+    setVisitorBat(visitorbatsc);
+    // console.log(score,"score")
+
+    // LocalTeam Bowler Filter
+    const localbowler = data?.data?.bowling.filter((localbw) => {
+      if (data?.data?.visitorteam.id === localbw?.team_id) {
+        return localbw;
+      }
+    });
+    setLocalBow(localbowler);
+
+    // VisitorTeam Bowler Filter
+    const visitorbowler = data?.data?.bowling.filter((visitorbw) => {
+      if (data?.data?.localteam.id === visitorbw?.team_id) {
+        return visitorbw;
+      }
+    });
+    setVisitorBow(visitorbowler);
+
+    //LocalTeam Extra :
+    const tlocalextra = data?.data?.scoreboards?.filter((ex) => {
+      if (data?.data?.localteam.id === ex?.team_id) {
+        return ex;
+      }
+    });
+    setLocalExtra(tlocalextra[0]);
+
+    //Visitor Team Extra
+    const tvisitorextra = data?.data?.scoreboards?.filter((ex) => {
+      if (data?.data?.visitorteam.id === ex?.team_id) {
+        return ex;
+      }
+    });
+    setVisitorExtra(tvisitorextra[0]);
+  }
+  console.log("Local Team Extra Data : ", localextra);
+  console.log("Visitor Team Extra Data : ", visitorextra);
 
   useEffect(() => {
-    dispatch(fetchScoreData(id));
-  },[]);
-
-  // return <p>test</p>
+    fetchscore();
+  }, []);
 
   return (
     <>
-      {score.length !== 0 ? (
+      {score ? (
         <>
           <section className="flex justify-center">
             <div className="flex-col justify-center">
@@ -42,7 +115,7 @@ export default function Scorecard() {
                   <div>
                     <div className="text-[11px] flex">
                       <p className="px-[5px] py-[3px] bg-[#EB5764] rounded-[2px] text-white">
-                        {score?.localteam?.code}
+                        {score?.localteam.code}
                       </p>
                     </div>
                     <div className="flex  gap-1">
@@ -65,7 +138,7 @@ export default function Scorecard() {
                   <div>
                     <div className="flex justify-end text-[11px]">
                       <p className="px-[5px] py-[3px] bg-[#53A784] rounded-[2px] text-white">
-                        {score?.visitorteam?.code}
+                        {score?.visitorteam.code}
                       </p>
                     </div>
                     <div className="flex  gap-1">
