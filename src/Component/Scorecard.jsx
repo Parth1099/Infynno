@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { IoIosArrowDropdownCircle } from "react-icons/io";
 import Dropscore from "./Dropscore.jsx";
 import { useSelector, useDispatch } from "react-redux";
 
 import { RotatingLines } from "react-loader-spinner";
 import { fetchScoreData } from "../Slice/ScoreCardSlice.js";
+import { clearnData } from "../Slice/ScoreCardSlice.js";
 
 export default function Scorecard() {
   const dispatch = useDispatch();
@@ -21,15 +21,18 @@ export default function Scorecard() {
     visitorextra,
   } = useSelector((state) => state.ScoreCardSlice);
 
+  const [activeBorder, setActiveBorder] = useState("Scorecard");
+
   let { id } = useParams();
-  console.log("Extra",localextra)
-  // console.log(score.length !== 0)
+  console.log("Extra", localextra);
 
   useEffect(() => {
     dispatch(fetchScoreData(id));
-  },[]);
-
-  // return <p>test</p>
+    return () => 
+    {
+      dispatch((clearnData()));
+    }
+  }, []);
 
   return (
     <>
@@ -48,7 +51,6 @@ export default function Scorecard() {
                     <div className="flex  gap-1">
                       <h1 className="text-[28px] font-[600] tracking-[0.14px] leading-[42px]">
                         {localscore?.score}/{localscore?.wickets}
-                        {/* {score?.runs[0].score}/{score?.runs[0].wickets} */}
                       </h1>
                       <p className="text-[12px] flex items-end font-[600] leadning-[1.33] text-[#787878]">
                         ({localscore?.overs})
@@ -82,25 +84,86 @@ export default function Scorecard() {
                   {score?.note}
                 </div>
 
-                <section className="flex justify-between  border-t-[1px] border-b-[1px] border-solid border-[#e6e6e6] py-[14px] ">
-                  <div className="text-[14px] text-[#787878] px-[35px] ">
-                    <p>Fantasy</p>
+                <section className="flex justify-between  border-t-[1px] border-b-[1px] border-solid border-[#e6e6e6] pt-[14px]  ">
+                  <div
+                    className="text-[14px] w-[210px] text-[#787878] px-[35px] text-center"
+                    onClick={() => {
+                      setActiveBorder("fantasy");
+                    }}
+                  >
+                    <p
+                      className={`${activeBorder == "fantasy"
+                        ? "text-[black] font-[600] "
+                        : ""
+                        }`}
+                    >
+                      Fantasy
+                    </p>
+                    <div className={`${activeBorder == "fantasy" ? "h-[4px] border-[solid] bg-[#ff5000] border-[#ff5000] rounded-t-lg " : " "}`}></div>
                   </div>
-                  <div className="text-[14px] text-[#787878] px-[35px] ">
-                    <p>Info</p>
+                  <div
+                    className="text-[14px] text-[#787878] px-[35px] w-[210px] text-center"
+                    onClick={() => {
+                      setActiveBorder("info");
+                    }}
+                  >
+                    <p
+                      className={`${activeBorder == "info" ? "text-[black] font-[600]" : ""
+                        }`}
+                    >
+                      Info
+                    </p>
+                    <div className={` ${activeBorder == "info" ? "h-[4px] border-[solid] bg-[#ff5000] border-[#ff5000] rounded-t-lg " : " "}`}></div>
+
+
                   </div>
-                  <div className="text-[14px] text-[#787878] px-[35px] ">
-                    <p>Live</p>
+                  <div
+                    className="text-[14px] text-[#787878] px-[35px] w-[210px] text-center"
+                    onClick={() => {
+                      setActiveBorder("live");
+                    }}
+                  >
+                    <p
+                      className={`${activeBorder == "live" ? "text-[black] font-[600]" : ""
+                        }`}
+                    >
+                      Live
+                    </p>
+                    <div className={`${activeBorder == "live" ? "h-[4px] border-[solid] bg-[#ff5000] border-[#ff5000] rounded-t-lg " : " "}`}></div>
+
                   </div>
-                  <div className="text-[14px] text-[#000] px-[33px] font-[600] ">
-                    <p>Scorecard</p>
+                  <div
+                    className="text-[14px] text-[#787878] px-[33px]  w-[210px] text-center"
+                    onClick={() => {
+                      setActiveBorder("scorecard");
+                    }}
+                  >
+                    <p
+                      className={`${activeBorder == "scorecard"
+                        ? "text-[black] font-[600]"
+                        : ""
+                        }`}
+                    >
+                      Scorecard
+                    </p>
+                    <div className={`${activeBorder == "scorecard" ? "h-[4px] border-[solid] bg-[#ff5000] border-[#ff5000] rounded-t-lg " : " "}`}></div>
+
                   </div>
-                  <div className="text-[14px] text-[#787878] px-[35px] ">
-                    <p>Squad</p>
+                  <div
+                    className="text-[14px] text-[#787878] px-[35px] w-[210px] text-center"
+                    onClick={() => {
+                      setActiveBorder("squad");
+                    }}
+                  >
+                    <p
+                      className={`${activeBorder == "squad" ? "text-[black] font-[600]" : ""
+                        }`}
+                    >
+                      Squad
+                    </p>
+                    <div className={`${activeBorder == "squad" ? "h-[4px] border-[solid] bg-[#ff5000] border-[#ff5000] rounded-t-lg " : " "}`}></div>
+
                   </div>
-                  {/* <div className="text-[14px] text-[#787878] px-[35px] ">
-                <p>Highlights</p>
-              </div> */}
                 </section>
               </div>
 
@@ -126,7 +189,7 @@ export default function Scorecard() {
       ) : (
         <div className="h-[300px] flex justify-center items-center">
           <RotatingLines
-            strokeColor="grey"
+            strokeColor="orange"
             strokeWidth="3"
             animationDuration="1.75"
             width="46"

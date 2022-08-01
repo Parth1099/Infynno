@@ -29,7 +29,20 @@ export const fetchScoreData = createAsyncThunk("matchNew/fetchScore", (id) => {
 const ScoreCardSlice = createSlice({
   name: "matchNew",
   initialState,
-  reducers: {},
+  reducers: {
+    clearnData: (state) => {
+      state.score = [];
+      state.localscore = [];
+      state.visitorscore = [];
+      state.localbat = [];
+      state.visitorbat = [];
+      state.localbow = [];
+      state.visitorbow = [];
+      state.localextra = [];
+      state.visitorextra = [];
+    }
+
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchScoreData.pending, (state, action) => {
@@ -119,3 +132,4 @@ const ScoreCardSlice = createSlice({
 });
 
 export default ScoreCardSlice.reducer;
+export const {clearnData} = ScoreCardSlice.actions;

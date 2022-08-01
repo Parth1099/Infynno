@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import { HiArrowRight, HiArrowLeft } from "react-icons/hi";
 import Slider from "react-slick";
-import { base_url, api_token, all_include } from "../Config.js";
-import axios from "axios";
 import Fixed from "./Fixed";
 import { Oval } from "react-loader-spinner";
 import { useSelector, useDispatch } from "react-redux";
@@ -99,25 +97,8 @@ function SamplePrevArrow(props) {
 export default function Slidernew() {
   const dispatch = useDispatch();
   const { matchdata,matchfinished ,upcoming } = useSelector((state) => state.homeSlice);
-//   console.log(matchdata);
-  console.log(matchfinished,"Finish Data");
-  // To Matched Finish
-  //     const finish = data.data.filter((datafinish) => {
-  //       if (datafinish.live == false) {
-  //         return datafinish;
-  //       }
-  //     });
-  //     setFinished(finish);
-  //     // console.log(finish,"Finish");
-
-  //     const upcomingone = data.data.filter((dataupcome) => {
-  //       if (dataupcome.status === "Aban.") {
-  //         return dataupcome;
-  //       }
-  //     });
-  //     setUpcoming(upcomingone);
-  //     // console.log(upcomingone,"Upcoming Data");
-  //   }
+  console.log(matchdata,"Matchdata");
+  // console.log(matchfinished,"Finish Data");
 
   useEffect(() => {
     // fetchMatchData();
@@ -126,7 +107,7 @@ export default function Slidernew() {
 
   return (
     <>
-      {matchdata ? (
+      {matchdata.length !== 0 ? (
         <>
           <section className="h-[166px] bg-nav-rgba flex justify-center mb-[150px]">
             <div className="w-[1100px] ml-[55px] flex flex-col gap-[16px] px-[16px] pt-[20px] ">
@@ -156,8 +137,8 @@ export default function Slidernew() {
             height="50"
             width="100"
             radius="9"
-            color="black"
-            ariaLabel="three-dots-loading"
+            color="orange"
+            // ariaLabel="three-dots-loading"
             wrapperStyle
             wrapperClass
           />

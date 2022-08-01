@@ -1,29 +1,36 @@
 import React, { useState } from "react";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 
-export default function Dropscore({ teamcode, score, teamscore, Bat, Bowl ,Extra }) {
-  
+export default function Dropscore({
+  teamcode,
+  score,
+  teamscore,
+  Bat,
+  Bowl,
+  Extra,
+}) {
   const [dropDown, setDropDown] = useState(false);
 
   return (
     <div>
-      <section className="flex justify-between w-[700px] px-[18px] py-[15px] bg-[#fafafa] border-b-[1px] border-solid border-[#e6e6e6]">
+      <section
+        onClick={() => setDropDown(!dropDown)}
+        className="flex cursor-pointer justify-between w-[700px] px-[18px] py-[15px]  bg-[#fafafa] border-b-[1px] border-solid border-[#e6e6e6]"
+      >
         <div className="flex items-center text-[16px] text-[#141414] font-[600] leading-[1.25] tracking-[0.5px] ">
-          {/* <p>{score?.visitorteam.code}</p> */}
           <p>{teamcode}</p>
         </div>
         <div className="flex items-center gap-[25px] text-[14px] text-[#141414] font-[600] tracking-[0.25px] ">
-          {/* <p> {visitorscore?.score}/{visitorscore?.wickets}</p> */}
           <p>
             {teamscore.score}/{teamscore.wickets}
           </p>
           <div>
-            <div onClick={() => setDropDown(!dropDown)}>
+            <div>
               <IoIosArrowDropdownCircle
                 className={`${
-                  dropDown ? "rotate-180 duration-500" : "duration-500"
-                }`}
-                color="#ffb999" 
+                  dropDown ? "rotate-180 fill-[#ff5000] duration-500" : "duration-500"
+                }transition-all ease-in-out duration-500 `}
+                color="#ffb999"
                 size={28}
               />
             </div>
@@ -31,7 +38,11 @@ export default function Dropscore({ teamcode, score, teamscore, Bat, Bowl ,Extra
         </div>
       </section>
 
-      <section className={`${dropDown ? "h-[100%] block" : "h-[0%] hidden"}`}>
+      <section
+        className={`${
+          dropDown ? "max-h-[2000px] " : "max-h-[0px] "
+        } overflow-hidden  transition-all ease-in-out duration-500  `}
+      >
         <div className="flex justify-between items-center p-[10px] bg-[#fafafa] rounded-[10px] mt-[20px] mx-[10px] ">
           <div className="text-[12px] uppercase leading-[1.57] tracking-[1px] text-[#787878] ">
             <p>Batsmen</p>
@@ -57,10 +68,24 @@ export default function Dropscore({ teamcode, score, teamscore, Bat, Bowl ,Extra
             >
               <div className="flex flex-col">
                 <div className="text-[14px] text-[#0081ff] tracking-[0.25px]">
-                  <p>{bat?.batsman?.fullname} {bat?.batsman?.position?.name === "Wicketkeeper" ? ("(wk)") : bat?.batsman?.position?.name === "Captain" ? "(c)" : ""}</p>
+                  <p>
+                    {bat?.batsman?.fullname}{" "}
+                    {bat?.batsman?.position?.name === "Wicketkeeper"
+                      ? "(wk)"
+                      : bat?.batsman?.position?.name === "Captain"
+                      ? "(c)"
+                      : ""}
+                  </p>
                 </div>
                 <div className="text-[11px] text-[#787878] leading-[2.27] tracking-[0.3px]">
-                  <p>{bat?.catch_stump_player_id ? (`c ${bat?.catchstump?.fullname}`) : ""} {bat?.bowling_player_id ? (`b ${bat?.bowler?.fullname}`) : "Not Out"}</p>
+                  <p>
+                    {bat?.catch_stump_player_id
+                      ? `c ${bat?.catchstump?.fullname}`
+                      : ""}{" "}
+                    {bat?.bowling_player_id
+                      ? `b ${bat?.bowler?.fullname}`
+                      : "Not Out"}
+                  </p>
                 </div>
               </div>
               <table>
@@ -94,10 +119,18 @@ export default function Dropscore({ teamcode, score, teamscore, Bat, Bowl ,Extra
           </div>
           <div className="flex gap-[5px] items-center">
             <span className="text-[14px] text-[#141414] font-[600] tracking-[0.25px]">
-              {Extra?.wide+Extra?.noball_balls+Extra?.bye+Extra?.leg_bye+Extra?.penalty+Extra?.wickets}
+              {Extra?.wide +
+                Extra?.noball_balls +
+                Extra?.bye +
+                Extra?.leg_bye +
+                Extra?.penalty +
+                Extra?.wickets}
             </span>
             <div className="pt-[2.5px] text-[12px] text-[#787878] leading-[1.33] font-[500] tracking-[0.4px]">
-              <p>(b {Extra?.bye} , lb{Extra?.leg_bye} , nb {Extra?.noball_balls}, w {Extra?.wide})</p>
+              <p>
+                (b {Extra?.bye} , lb{Extra?.leg_bye} , nb {Extra?.noball_balls},
+                w {Extra?.wide})
+              </p>
             </div>
           </div>
         </section>
@@ -155,9 +188,7 @@ export default function Dropscore({ teamcode, score, teamscore, Bat, Bowl ,Extra
                 <div className="text-[14px] text-[#0081ff] tracking-[0.25px]">
                   <p>{bowl?.bowler?.fullname}</p>
                 </div>
-                {/* <div className="text-[11px] text-[#787878] leading-[2.27] tracking-[0.3px]">
-                  B Ben Stokes
-                </div> */}
+             
               </div>
               <table>
                 <tbody>
@@ -200,16 +231,12 @@ export default function Dropscore({ teamcode, score, teamscore, Bat, Bowl ,Extra
         </div>
         {Bat?.map((bat, index) => {
           return (
-            <div  key={index}>
+            <div key={index}>
               {bat?.fow_balls > 0 && (
-                <div
-                 
-                  className="flex justify-between p-[10px] mx-[10px] border-b-[1px] border-solid border-[#f5f5f5]"
-                >
+                <div className="flex justify-between p-[10px] mx-[10px] border-b-[1px] border-solid border-[#f5f5f5]">
                   <div className="flex flex-col">
                     <div className="text-[14px] text-[#0081ff] tracking-[0.25px]">
                       <p>{bat?.batsman?.fullname}</p>
-                      {/* <p>{bat?.batsman?.fullname}</p> */}
                     </div>
                   </div>
                   <table>
