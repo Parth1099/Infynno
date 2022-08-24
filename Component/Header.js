@@ -20,7 +20,7 @@ export function Navbar() {
           {/* Middle */}
           <div className="middle flex items-center">
             {/* <div className="items-center flex"> */}
-              <Image src="/images/autodigg.png" width={132} height={36} />
+            <Image src="/images/autodigg.png" width={132} height={36} />
             {/* </div> */}
           </div>
           {/* Right */}

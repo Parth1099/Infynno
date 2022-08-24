@@ -2,18 +2,22 @@ import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronDownIcon, SelectorIcon } from '@heroicons/react/solid'
 
-const people = [
-    { name: 'Select Make' },
-    { name: 'Arlene Mccoy' },
-    { name: 'Devon Webb' },
-    { name: 'Tom Cook' },
-    { name: 'Tanya Fox' },
-    { name: 'Hellen Schmidt' },
-]
+// const people = [
+//     { name: 'Select Make' },
+//     { name: 'Arlene Mccoy' },
+//     { name: 'Devon Webb' },
+//     { name: 'Tom Cook' },
+//     { name: 'Tanya Fox' },
+//     { name: 'Hellen Schmidt' },
+// ]
 
-export default function Dropdown() {
-    const [selected, setSelected] = useState(people[0])
+export default function Dropdown({make}) {
+    console.log(make,"Final")
+    const people = Object.keys(make)
+    const [selected, setSelected] = useState([])
     const [rote, setRote] = useState(false);
+    console.log(people,"People")
+
 
     function rotate() {
         if (rote) {
@@ -33,7 +37,7 @@ export default function Dropdown() {
                         <span className="block truncate">{selected.name}</span>
                         <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
 
-                            <ChevronDownIcon className={`h-5 w-5 text-gray-400 ${rote ? "rotate-180" : ""}`} aria-hidden="true" onClick={() => rotate()} />
+                            <ChevronDownIcon className={`h-5 w-5 text-gray-400 ${rote ? "rotate-180" : ""}`} aria-hidden="true" />
                         </span>
                     </Listbox.Button>
                     <Transition
@@ -58,7 +62,7 @@ export default function Dropdown() {
                                                 className={`block truncate ${selected ? 'font-medium' : 'font-normal'
                                                     }`}
                                             >
-                                                {person.name}
+                                                {person}
                                             </span>
 
                                         </>

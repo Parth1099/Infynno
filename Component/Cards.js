@@ -1,29 +1,31 @@
 import Image from "next/image";
+import router from "next/router";
 import React from "react";
 
-const Card = () => {
+const Card = ({ data }) => {
+  // console.log(users,"Props")
   return (
     <>
-      <section className="  ">
-        <div className="card-main max-w-[880px] flex gap-[24px]  bg-white rounded-[10px] pr-[24px]  shadow-[0px_0px_2px_rgba(40,41,61,0.04),0px_4px_8px_rgba(96,97,112,0.16);]">
-          <div className="leftside  h-[254px] w-[360px]">
-            <Image src="/Images/car1.png" height={342} width={360} />
+      <section className="" onClick={() => router.push(`/cardetails/${data.vin}`) }>
+        <div className="card-main max-w-full h-[254px] flex gap-[24px]  bg-white rounded-[10px] pr-[24px]  shadow-[0px_0px_2px_rgba(40,41,61,0.04),0px_4px_8px_rgba(96,97,112,0.16);]">
+          <div className="leftside   rounded-[10px]">
+            <Image src={data.photos?data.photos[0] :"/Images/cardemo.png"  } height={254} width={300} className="rounded-t-[10px]" />
           </div>
-          <div className="rigthside flex flex-col gap-[96px]">
+          <div className="rigthside flex flex-col justify-between py-[25px]">
             <div className="rigth-top flex flex-col gap-[4px] pt-6 ">
               <div className="right-top-titleone font-[700] text-xl leading-8  w-[280px]">
-                2022 Ford F-250 Super Duty
+                {data.year} {data.make} {data.model}
               </div>
               <div className="right-top-titletwo font-[400] text-xs text-[#8F90A6] leading-4 w-[280px]">
-                Covert Buick GMC • 3,518 Mileage • Black
+                {data.dealership} • {data.milage} Milage • {data.exterior_color}
               </div>
               <div className="right-top-titlethree font-[400] text-xs text-[#8F90A6] leading-4 w-[280px]">
-                Austin, Texas
+                {data.city}, {data.state}
               </div>
             </div>
-            <div className="right bottom flex gap-[302px]">
+            <div className="right bottom flex  gap-[302px]">
               <div className="price-main flex items-center gap-[8px]">
-                <p className="font-[600] text-[28px] leading-[38px]">$87,698</p>
+                <p className="font-[600] text-[28px] leading-[38px]">${data.price.toLocaleString('en-US')}</p>
                 <div className="rounded-full bg-[#8F90A6] w-4 h-4 flex items-center justify-center text-[14px]  italic text-white">
                   i
                 </div>
