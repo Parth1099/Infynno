@@ -7,8 +7,8 @@ import "rc-slider/assets/index.css";
 
 import DropdownComp from "./DropdownComp";
 
-const Sidebar = ({ make, model , bodystyle, exteriorcolor ,interiorcolor,trasmission , drive , fuel }) => {
-  console.log(interiorcolor , "Sidebar")
+const Sidebar = ({ make, model, bodystyle, exteriorcolor, interiorcolor, trasmission, drive, fuel }) => {
+  console.log(interiorcolor, "Sidebar")
   const [dropshow, SetDropShow] = useState(false);
 
   function Showmore() {
@@ -236,9 +236,9 @@ const Sidebar = ({ make, model , bodystyle, exteriorcolor ,interiorcolor,trasmis
               </div>
             </div>
 
-            <DropdownComp name={"Style"} data = {bodystyle} data2 = {exteriorcolor} data3 = {interiorcolor} intitle1 = {"Body Type"} intitle2 = {"EXTERIOR COLOR"} intitle3 = {"INTERIOR COLOR"} />
-            <DropdownComp name={"Performance"} data ={trasmission} data2 = {drive} data3 = {fuel} intitle1 = {"TRANSMISSION"} intitle2 = {"DRIVE TRAIN"} intitle3 = {"FUEL TYPE"}  />
-            <DropdownComp name={"Features"} data = {bodystyle} data2 = {exteriorcolor} data3 = {interiorcolor} intitle1 = {"Body Type"} intitle2 = {"EXTERIOR COLOR"} intitle3 = {"INTERIOR COLOR"}  />
+            <DropdownComp name={"Style"} data={bodystyle} data2={exteriorcolor} data3={interiorcolor} intitle1={"Body Type"} intitle2={"EXTERIOR COLOR"} intitle3={"INTERIOR COLOR"} />
+            <DropdownComp name={"Performance"} data={trasmission} data2={drive} data3={fuel} intitle1={"TRANSMISSION"} intitle2={"DRIVE TRAIN"} intitle3={"FUEL TYPE"} />
+            <DropdownComp name={"Features"} data={bodystyle} data2={exteriorcolor} data3={interiorcolor} intitle1={"Body Type"} intitle2={"EXTERIOR COLOR"} intitle3={"INTERIOR COLOR"} />
           </div>
         </div>
       </div>
