@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { CheckIcon, ChevronDownIcon } from "@heroicons/react/solid";
 
 const DropdownComp = ({ data, data2 ,data3 ,name , intitle1 , intitle2 , intitle3 ,trasmission ,drive , fuel }) => {
-  console.log(data3, "Dropdowncomp");
   const [dropDown, setDropDown] = useState(false);
+
+  // return <p>temp</p>;
+
   return (
     <>
       <div
@@ -26,7 +28,7 @@ const DropdownComp = ({ data, data2 ,data3 ,name , intitle1 , intitle2 , intitle
       <div className={`${dropDown ? "h-auto" : " h-0 "} overflow-hidden`}>
         <div className="style-main flex flex-col gap-3">
           <p className="font-[600] uppercase text-[#8F90A6] text-[12px] leading-5">{intitle1}</p>
-          {Object.entries(data).map(([key, value]) => {
+          {data && Object.entries(data)?.map(([key, value]) => {
             return (
               <>
                 <div>
@@ -50,7 +52,7 @@ const DropdownComp = ({ data, data2 ,data3 ,name , intitle1 , intitle2 , intitle
 
         <div className="style-main flex flex-col gap-3">
           <p className="font-[600] uppercase text-[#8F90A6] text-[12px] mt-4 leading-5">{intitle2}</p>
-          {Object.entries(data2).map(([key, value]) => {
+          {data2 && Object.entries(data2).map(([key, value]) => {
             return (
               <>
                 <div>
@@ -74,7 +76,7 @@ const DropdownComp = ({ data, data2 ,data3 ,name , intitle1 , intitle2 , intitle
 
         <div className="style-main flex flex-col gap-3">
           <p className="font-[600] uppercase text-[#8F90A6] text-[12px] mt-4 leading-5">{intitle3}</p>
-          {Object.entries(data3).map(([key, value]) => {
+          {data3 && Object.entries(data3).map(([key, value]) => {
             return (
               <>
                 <div>

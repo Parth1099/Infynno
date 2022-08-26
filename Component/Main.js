@@ -1,34 +1,34 @@
 import React, { useEffect, useState } from "react";
-import Card from "./Cards";
+// import Card from "./Cards";
 import axios from "axios";
 import Sidebar from "./Sidebar";
+import dynamic from "next/dynamic";
 import ReactPaginate from 'react-paginate';
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCars } from "../store/homePageslice";
+
+const Card = dynamic(() => import("./Cards"),{
+  loading :() => <p>Loading..</p>,
+  ssr:false,
+}
+ )
 
 
-const Main = ({ count,  make, model, bodystyle, exteriorcolor, interiorcolor, trasmission, drive, fuel }) => {
+const Main = () => {
 
-  const [cars, setCars] = useState([]);
 
-  async function fetchcars(current_page) {
-    const main = await axios.get(`https://autodigg.com/ad-api/cars/list?usedCar=false&car_type=Used+car,New+car,Certified+pre-owned&page=${current_page}&radius=100&newCar=false`);
-    const maindata = main.data;
-    setCars(maindata);
+  const {count , car } = useSelector((state)=>
+    state.homeSlice
+  )
 
-  }
-  useEffect(() => {
-    async function getAllCars() {
-      const main = await axios.get(`https://autodigg.com/ad-api/cars/list?usedCar=false&car_type=Used+car,New+car,Certified+pre-owned&page=1&radius=100&newCar=false`);
-      const maindata = main.data;
-      setCars(maindata);
-    }
-    getAllCars();
-  }, [])
+ 
 
-  async function handlePageClick(data) {
-    console.log(data.selected, "Pagination Page")
+  const dispatch = useDispatch();
 
-    const current_page = data.selected + 1;
-    fetchcars(current_page);
+  const handlePageClick = (data)=> {
+
+    let current_page = data.selected + 1;
+    dispatch(fetchCars(current_page));
   }
 
 
@@ -49,11 +49,11 @@ const Main = ({ count,  make, model, bodystyle, exteriorcolor, interiorcolor, tr
           </div>
           <div className="bottom flex gap-6">
             <div>
-              <Sidebar make={make} model={model} bodystyle={bodystyle} exteriorcolor={exteriorcolor} interiorcolor={interiorcolor} trasmission={trasmission} drive={drive} fuel={fuel} />
+              <Sidebar />
             </div>
             <div className="card-right-main">
               <div className="flex  flex-col gap-8">
-                {cars?.map((data) => {
+                {car?.map((data) => {
                   return (
                     <>
                       <Card data={data} />
@@ -69,7 +69,7 @@ const Main = ({ count,  make, model, bodystyle, exteriorcolor, interiorcolor, tr
                     previousLabel={" <"}
                     nextLabel={" >"}
                     breakLabel={"..."}
-                    pageCount={count.count / 20}
+                    pageCount={Math.ceil(count.count / 20)}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={3}
                     onPageChange={handlePageClick}

@@ -3,10 +3,9 @@ import router from "next/router";
 import React from "react";
 
 const Card = ({ data }) => {
-  // console.log(users,"Props")
   return (
     <>
-      <section className="" onClick={() => router.push(`/cardetails/${data.vin}`) }>
+      <section className="cursor-pointer" onClick={() => router.push(`/cardetails/${data.vin}`) }>
         <div className="card-main max-w-full h-[254px] flex gap-[24px]  bg-white rounded-[10px] pr-[24px]  shadow-[0px_0px_2px_rgba(40,41,61,0.04),0px_4px_8px_rgba(96,97,112,0.16);]">
           <div className="leftside   rounded-[10px]">
             <Image src={data.photos?data.photos[0] :"/Images/cardemo.png"  } height={254} width={300} className="rounded-t-[10px]" />

@@ -20,10 +20,7 @@ export async function getServerSideProps(context) {
 const Car = ({ carDetails }) => {
     const router = useRouter();
     const { car } = router.query;
-    console.log(carDetails, "carerererererer");
     const carfeature = carDetails.features1.split(",")
-    // console.log(carfeature);
-    // {console.log(carDetails.features1.split(",")[2],",Feature Details")}
     return (
         <>
             <section className='max-w-[1440px] mx-auto '>
@@ -78,7 +75,7 @@ const Car = ({ carDetails }) => {
                         </div>
                     </div>
                     <div className="detail-main-two h-[650px] bg-black">
-                        <Gallery photos={carDetails.photos} />
+                        {/* <Gallery photos={carDetails.photos} /> */}
                     </div>
                     <div className="detail-main-three flex flex-col items-center justify-center">
                         <div className="car-details-main h-[388px] w-[1250px] mt-[64px] bg-white  flex flex-col gap-9 p-[36px] rounded-[10px]">

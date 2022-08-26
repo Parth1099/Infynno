@@ -2,21 +2,11 @@ import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronDownIcon, SelectorIcon } from '@heroicons/react/solid'
 
-// const people = [
-//     { name: 'Select Make' },
-//     { name: 'Arlene Mccoy' },
-//     { name: 'Devon Webb' },
-//     { name: 'Tom Cook' },
-//     { name: 'Tanya Fox' },
-//     { name: 'Hellen Schmidt' },
-// ]
 
 export default function Dropdown({make}) {
-    console.log(make,"Final")
     const people = Object.keys(make)
     const [selected, setSelected] = useState([])
     const [rote, setRote] = useState(false);
-    console.log(people,"People")
 
 
     function rotate() {

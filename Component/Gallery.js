@@ -8,7 +8,6 @@ const Gallery = ({ photos }) => {
             thumbnail: data,
         }
     })
-    console.log("Gallery", photos)
     return (
         <div> <ImageGallery showPlayButton={false} items={images} /></div>
     )
