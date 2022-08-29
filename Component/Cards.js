@@ -1,14 +1,20 @@
 import Image from "next/image";
 import router from "next/router";
 import React from "react";
+import { useSelector } from "react-redux";
+import CardLoader from "./CardLoader";
+
 
 const Card = ({ data }) => {
+  const {isLoading} = useSelector((state) => state.homeSlice)
   return (
     <>
-      <section className="cursor-pointer" onClick={() => router.push(`/cardetails/${data.vin}`) }>
+    {isLoading ? <CardLoader/> :
+    <>
+      <section className="cursor-pointer" onClick={() => router.push(`/cardetails/${data.vin}`)}>
         <div className="card-main max-w-full h-[254px] flex gap-[24px]  bg-white rounded-[10px] pr-[24px]  shadow-[0px_0px_2px_rgba(40,41,61,0.04),0px_4px_8px_rgba(96,97,112,0.16);]">
           <div className="leftside   rounded-[10px]">
-            <Image src={data.photos?data.photos[0] :"/Images/cardemo.png"  } height={254} width={300} className="rounded-t-[10px]" />
+            <Image src={data.photos ? data.photos[0] : "/Images/cardemo.png"} height={254} width={300} className="rounded-t-[10px]" />
           </div>
           <div className="rigthside flex flex-col justify-between py-[25px]">
             <div className="rigth-top flex flex-col gap-[4px] pt-6 ">
@@ -41,6 +47,8 @@ const Card = ({ data }) => {
           </div>
         </div>
       </section>
+      </>
+    }
     </>
   );
 };

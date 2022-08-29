@@ -5,15 +5,15 @@ import { Navbar } from '../Component/Header'
 import Footer from '../Component/Footer'
 
 function MyApp({ Component, pageProps }) {
-  return(
+  return (
     <>
-    <div>
-    <Navbar />
-    <Component {...pageProps}/>
-    <Footer/>
-    </div>
+      <div>
+        <Navbar />
+        <Component {...pageProps} />
+        <Footer />
+      </div>
     </>
-  ) 
+  )
 }
 
 

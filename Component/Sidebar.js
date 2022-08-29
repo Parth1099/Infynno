@@ -6,15 +6,26 @@ import range from "rc-slider";
 import "rc-slider/assets/index.css";
 
 import DropdownComp from "./DropdownComp";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCars, getCarType, getRange, getMakedata, getmodelCar, getPriceCar, getYearCar } from "../store/homePageslice";
 
 const Sidebar = () => {
   const [dropshow, SetDropShow] = useState(false);
+  const { carType, range, modelCar } = useSelector((state) => state.homeSlice)
+  const dispatch = useDispatch();
 
-  const { make, bodystyle, model, fuel, transmission, interiorcolor, exteriorcolor, drive } = useSelector((state) => state.homeSlice)
+  const { make, bodystyle, model, fuel, transmission, interiorcolor, exteriorcolor, drive, price, year } = useSelector((state) => state.homeSlice)
 
-
-
+  function getNewCars(e) {
+    let arr = !e.target.checked ? carType.filter((x) => x !== e.target.value) : [...carType, e.target.value]
+    let getmodel = !e.target.checked ? modelCar.filter((x) => x !== e.target.value) : [...modelCar, e.target.value]
+    // let getmodel = e.target.value;
+    console.log(getmodel, ",valuemodel");
+    dispatch(getCarType(arr))
+    dispatch(getmodelCar(getmodel));
+    dispatch(fetchCars());
+  }
+  console.log(year, "year");
 
   return (
     <section>
@@ -34,6 +45,9 @@ const Sidebar = () => {
                 <label class="inline-flex items-center gap-[10px]">
                   <input
                     type="checkbox"
+                    value={"New Car"}
+                    onChange={getNewCars}
+                    checked={carType.includes("New Car")}
                     class="w-5 h-5 rounded accent-[#28293D] border-[2px] border-[#8F90A6]"
                   />
                   <span className="text-[14px] leading-[20px] font-[500]">
@@ -44,6 +58,9 @@ const Sidebar = () => {
                 <label class="inline-flex items-center gap-[10px]">
                   <input
                     type="checkbox"
+                    value={"Used Car"}
+                    onChange={getNewCars}
+                    checked={carType.includes("Used Car")}
                     class="w-5 h-5 rounded accent-[#28293D]	"
                   />
                   <span className="text-[14px] leading-[20px] font-[500]">
@@ -72,11 +89,18 @@ const Sidebar = () => {
                   Search within
                 </div>
                 <div className="search-miles text-[16px] leading-6 font-[600]">
-                  100 miles
+                  {range} miles
                 </div>
               </div>
 
-              <Slider></Slider>
+              {/* <Slider defaultValue={100} ></Slider> */}
+              <Slider
+                defaultValue={200}
+                onAfterChange={() => dispatch(fetchCars())}
+                onChange={(value) => { dispatch(getRange(value)) }}
+                // trackStyle={{ background: 'linear-gradient(147.14deg, #FF8800 6.95%, #E63535 93.05%)', height: "6px" }}
+
+                min={20} max={500} />
 
               <div className="miles-range flex justify-between mt-[10px] font-[500] text-[12px] leading-4">
                 <div className="">20 miles</div>
@@ -111,7 +135,10 @@ const Sidebar = () => {
                       <input
                         class="form-check-input accent-[#28293D] h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                         type="checkbox"
-                        value=""
+                        checked={modelCar.includes(key)}
+                        value={key}
+                        onChange={getNewCars}
+
                         id="flexCheckDefault"
                       />
                       <label
@@ -142,7 +169,7 @@ const Sidebar = () => {
 
             <div className="w-[280px] h-[1px] bg-[#E4E4EB] rounded-[10px] my-[16px]"></div>
             {/* Body Type Main */}
-            <p className="font-[600] text-[12px] leading-4 mb-[14px] uppercase text-[#8F90A6]">
+            {/* <p className="font-[600] text-[12px] leading-4 mb-[14px] uppercase text-[#8F90A6]">
               Body type
             </p>
             <div className="model-main flex flex-col gap-[16px] mb-4">
@@ -176,8 +203,8 @@ const Sidebar = () => {
                   Suv(32)
                 </label>
               </div>
-            </div>
-            <div className="w-[280px] h-[1px] bg-[#E4E4EB] rounded-[10px] mb-[16px]"></div>
+            </div> */}
+            {/* <div className="w-[280px] h-[1px] bg-[#E4E4EB] rounded-[10px] mb-[16px]"></div> */}
 
             {/* Price Main */}
             <div className="price-main">
@@ -186,11 +213,19 @@ const Sidebar = () => {
                   price
                 </p>
                 <p className="text-[#28293D] text-[16px] font-[600] leading-[24px] ">
-                  $0 - $1,000
+                  ${price[0]} - ${price[1]}
                 </p>
               </div>
               <div className="price-two my-[15px]">
-                <Slider range></Slider>
+                {/* <Slider range></Slider> */}
+                <Slider
+                  range
+                  min={0} max={100000}
+                  defaultValue={[10000, 30000]}
+                  onChange={(value) => dispatch(getPriceCar(value))}
+                  onAfterChange={() => dispatch(fetchCars())}
+
+                />
               </div>
               <div className="price-three flex justify-between text-[#28293D] text-[12px] font-[500] leading-[16px] uppercase">
                 <p className="">$0</p>
@@ -206,11 +241,19 @@ const Sidebar = () => {
                   Make Year
                 </p>
                 <p className="text-[#28293D] text-[16px] font-[600] leading-[24px] ">
-                  2000 - 2010
+                  {year[0]} - {year[1]}
+                  {/* 2000 - 2004 */}
                 </p>
               </div>
               <div className="price-two my-[15px]">
-                <Slider range></Slider>
+                <Slider
+                  range
+                  min={1990} max={2022}
+                  defaultValue={[2011, 2022]}
+                  onChange={(value) => dispatch(getYearCar(value))}
+                  onAfterChange={() => dispatch(fetchCars())}
+
+                />
               </div>
               <div className="price-three flex justify-between text-[#28293D] text-[12px] font-[500] leading-[16px] uppercase">
                 <p className="">1990</p>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import Card from "./Cards";
+import Card from "./Cards";
 import axios from "axios";
 import Sidebar from "./Sidebar";
 import dynamic from "next/dynamic";
@@ -7,25 +7,27 @@ import ReactPaginate from 'react-paginate';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCars } from "../store/homePageslice";
 
-const Card = dynamic(() => import("./Cards"),{
-  loading :() => <p>Loading..</p>,
-  ssr:false,
-}
- )
+// const Card = dynamic(() => import("./Cards"),{
+//   loading :() => <p>Loading..</p>,
+//   ssr:false,
+// }
+//  )
 
 
 const Main = () => {
 
 
-  const {count , car } = useSelector((state)=>
+  const { count, car } = useSelector((state) =>
     state.homeSlice
   )
 
- 
+
 
   const dispatch = useDispatch();
 
-  const handlePageClick = (data)=> {
+  // console.log(count, 'counttttttt')
+
+  const handlePageClick = (data) => {
 
     let current_page = data.selected + 1;
     dispatch(fetchCars(current_page));
