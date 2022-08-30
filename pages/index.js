@@ -13,6 +13,7 @@ import {
   getMake,
   getModel,
   getTrasmission,
+  getFeature,
 } from "../store/homePageslice";
 
 // const Main = dynamic(() => import("../Component/Main"),{
@@ -51,6 +52,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
     const fueltypeRes =
       "https://autodigg.com/ad-api/cars/list?body_type=&make=&model=&usedCar=true&car_type=Used+car&page=1&radius=100&year=2011,2021&zip=&return=fuel_type";
 
+    const featureRes = "https://autodigg.com/ad-api/cars/list?body_type=&make=&model=&usedCar=true&car_type=Used+car&page=1&radius=100&year=2011,2021&zip=&return=features";
     const data = await axios.all([
       axios.get(res),
       axios.get(main),
@@ -62,6 +64,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
       axios.get(trasmissionRes),
       axios.get(driveRes),
       axios.get(fueltypeRes),
+      axios.get(featureRes),
     ]);
 
     store.dispatch(getCount(data[0].data));
@@ -74,6 +77,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
     store.dispatch(getTrasmission(data[7].data));
     store.dispatch(getDrive(data[8].data));
     store.dispatch(getFuel(data[9].data));
+    store.dispatch(getFeature(data[10].data));
     // store.dispatch(getCars(maindata))
     // store.dispatch(getCount(data))
     // store.dispatch(getMake(mainmake))

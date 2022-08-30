@@ -84,6 +84,7 @@ const Main = () => {
                     nextLinkClassName={""}
                     breakClassName={""}
                     breakLinkClassName={""}
+                    renderOnZeroPageCount={null}
                     activeClassName={"border-[2px] border-solid border-[#FF8800] text-[#FF8800] "}
                   />
                 </div>

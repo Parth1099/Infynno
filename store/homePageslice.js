@@ -13,6 +13,7 @@ const initialState = {
     transmission: null,
     drive: null,
     fuel: null,
+    feature : null,
     page: "1",
     isLoading: false,
     carType: ["New Car", "Used Car"],
@@ -80,6 +81,9 @@ const homeSlice = createSlice({
         getFuel: (state, action) => {
             state.fuel = action.payload;
         },
+        getFeature : (state , action) =>{
+            state.feature = action.payload;
+        },
         getPagination: (state, action) => {
             state.page = action.payload;
         },
@@ -119,6 +123,7 @@ const homeSlice = createSlice({
             state.transmission = action.payload.homeSlice.transmission;
             state.drive = action.payload.homeSlice.drive;
             state.fuel = action.payload.homeSlice.fuel;
+            state.feature = action.payload.homeSlice.feature;
         },
         [fetchCars.pending]: (state, action) => {
             state.isLoading = true
@@ -136,6 +141,6 @@ const homeSlice = createSlice({
     },
 });
 
-export const { getCars, getPagination, getYearCar, getRange, getPriceCar, getBodystyleCar, getmodelCar, getMakedata, getCarType, getCount, getMake, getModel, getBodystyle, getInteriorcolor, getExteriorcolor, getTrasmission, getDrive, getFuel } = homeSlice.actions;
+export const { getCars, getPagination, getYearCar,getFeature, getRange, getPriceCar, getBodystyleCar, getmodelCar, getMakedata, getCarType, getCount, getMake, getModel, getBodystyle, getInteriorcolor, getExteriorcolor, getTrasmission, getDrive, getFuel } = homeSlice.actions;
 
 export default homeSlice.reducer;
