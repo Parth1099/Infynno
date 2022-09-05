@@ -90,7 +90,7 @@ const MultiSelectDropDown = ({ make }) => {
     const people = Object.keys(make)
 
     function rotate() {
-        console.log("clickeddd");
+        // console.log("clickeddd");
         if (rotated) {
             setRotate(false);
         } else {

@@ -7,11 +7,6 @@ import ReactPaginate from 'react-paginate';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCars } from "../store/homePageslice";
 
-// const Card = dynamic(() => import("./Cards"),{
-//   loading :() => <p>Loading..</p>,
-//   ssr:false,
-// }
-//  )
 
 
 const Main = () => {
@@ -25,7 +20,6 @@ const Main = () => {
 
   const dispatch = useDispatch();
 
-  // console.log(count, 'counttttttt')
 
   const handlePageClick = (data) => {
 

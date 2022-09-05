@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { CheckIcon, ChevronDownIcon } from "@heroicons/react/solid";
+import CheckBox from "./CheckBox";
 
-const DropdownComp = ({ data, data2 ,data3,data4 ,data5 ,name , intitle1 , intitle2 , intitle3,intitle4,intitle5 ,trasmission ,drive , fuel }) => {
+const DropdownComp = ({ data, setFunction1, setFunction2, setFunction3, data2, state1, state2, state3, data3, data4, data5, name, intitle1, intitle2, intitle3, intitle4, intitle5, trasmission, drive, fuel }) => {
   const [dropDown, setDropDown] = useState(false);
-  console.log(data4,"DATA")
-  // return <p>temp</p>;
+
+
+
 
   return (
     <>
@@ -28,26 +30,19 @@ const DropdownComp = ({ data, data2 ,data3,data4 ,data5 ,name , intitle1 , intit
       <div className={`${dropDown ? "h-auto" : " h-0 "} overflow-hidden`}>
         <div className="style-main flex flex-col gap-3">
           <p className="font-[600] uppercase text-[#8F90A6] text-[12px] leading-5">{intitle1}</p>
-          {data && Object.entries(data)?.map(([key, value]) => {
-            return (
-              <>
-                <div>
-                  <input
-                    class="form-check-input accent-[#28293D] h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckDefault"
-                  />
-                  <label
-                    class="form-check-label inline-block text-[14px] text-[#28293D] leading-5 font-[500] "
-                    for="flexCheckDefault"
-                  >
-                    {key} ({value})
-                  </label>
-                </div>
-              </>
-            )
-          })}
+          {
+            data && Object.entries(data)?.map(([key, value]) => {
+              return (
+                <>
+                  <div>
+
+                    <CheckBox name={key} value1={value} data={data} state={state1} setFunction={setFunction1} />
+
+                  </div>
+                </>
+              )
+            })
+          }
         </div>
 
         <div className="style-main flex flex-col gap-3">
@@ -56,18 +51,7 @@ const DropdownComp = ({ data, data2 ,data3,data4 ,data5 ,name , intitle1 , intit
             return (
               <>
                 <div>
-                  <input
-                    class="form-check-input accent-[#28293D] h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckDefault"
-                  />
-                  <label
-                    class="form-check-label inline-block text-[14px] text-[#28293D] leading-5 font-[500] "
-                    for="flexCheckDefault"
-                  >
-                    {key} ({value})
-                  </label>
+                  <CheckBox name={key} value1={value} data={data2} state={state2} setFunction={setFunction2} />
                 </div>
               </>
             )
@@ -80,74 +64,15 @@ const DropdownComp = ({ data, data2 ,data3,data4 ,data5 ,name , intitle1 , intit
             return (
               <>
                 <div>
-                  <input
-                    class="form-check-input accent-[#28293D] h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckDefault"
-                  />
-                  <label
-                    class="form-check-label inline-block text-[14px] text-[#28293D] leading-5 font-[500] "
-                    for="flexCheckDefault"
-                  >
-                    {key} ({value})
-                  </label>
+                  <CheckBox name={key} value1={value} data={data3} state={state3} setFunction={setFunction3} />
                 </div>
               </>
             )
           })}
         </div>
 
-        <div className="style-main flex flex-col gap-3">
-          <p className="font-[600] uppercase text-[#8F90A6] text-[12px] mt-4 leading-5">{intitle4}</p>
-          {data4 && Object.entries(data4).map(([key, value]) => {
-            return (
-              <>
-                <div>
-                  <input
-                    class="form-check-input accent-[#28293D] h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckDefault"
-                  />
-                  <label
-                    class="form-check-label inline-block text-[14px] text-[#28293D] leading-5 font-[500] "
-                    for="flexCheckDefault"
-                  >
-                    {key} ({value})
-                  </label>
-                </div>
-              </>
-            )
-          })}
-        </div>
-
-        <div className="style-main flex flex-col gap-3">
-          <p className="font-[600] uppercase text-[#8F90A6] text-[12px] mt-4 leading-5">{intitle5}</p>
-          {data5 && Object.entries(data5).map(([key, value]) => {
-            return (
-              <>
-                <div>
-                  <input
-                    class="form-check-input accent-[#28293D] h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckDefault"
-                  />
-                  <label
-                    class="form-check-label inline-block text-[14px] text-[#28293D] leading-5 font-[500] "
-                    for="flexCheckDefault"
-                  >
-                    {key} ({value})
-                  </label>
-                </div>
-              </>
-            )
-          })}
-        </div>
       </div>
     </>
   );
 };
-
 export default DropdownComp;

@@ -5,28 +5,30 @@ import Slider from "rc-slider";
 import range from "rc-slider";
 import "rc-slider/assets/index.css";
 
+
+
 import DropdownComp from "./DropdownComp";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCars, getCarType, getRange, getMakedata, getmodelCar, getPriceCar, getYearCar ,getFeature } from "../store/homePageslice";
+import { fetchCars, getCarType, getRange, getMakedata, getmodelCar, getPriceCar, getYearCar, getFeature, getBodystyleCar, setBodyData, setTransmission, setInt, setExt, setDrive, setFuel, setFeaturedata } from "../store/homePageslice";
 
 const Sidebar = () => {
   const [dropshow, SetDropShow] = useState(false);
-  const { carType, range, modelCar } = useSelector((state) => state.homeSlice)
+  const { make, bodystyle, model, fuel, transmission, interiorcolor, exteriorcolor, drive, price, year, feature, carType, range, modelCar, bodyStyleData, transmissionData, exteriorData, interiorData, driveData, fuelData, featureData } = useSelector((state) => state.homeSlice)
   const dispatch = useDispatch();
 
-  const { make, bodystyle, model, fuel, transmission, interiorcolor, exteriorcolor, drive, price, year,feature } = useSelector((state) => state.homeSlice)
 
+  // debugger;
   function getNewCars(e) {
     let arr = !e.target.checked ? carType.filter((x) => x !== e.target.value) : [...carType, e.target.value]
     let getmodel = !e.target.checked ? modelCar.filter((x) => x !== e.target.value) : [...modelCar, e.target.value]
     // let getmodel = e.target.value;
-    console.log(getmodel, ",valuemodel");
+    // console.log(getmodel, ",valuemodel");
     dispatch(getCarType(arr))
     dispatch(getmodelCar(getmodel));
     dispatch(fetchCars());
   }
   // console.log(feature,"Feature Redux");
-  console.log(Object.entries(feature),"Feature Redux");
+  console.log(Object.entries(feature), "Feature Redux");
   // console.log(interiorcolor,"Feature Redux");
 
   return (
@@ -170,7 +172,7 @@ const Sidebar = () => {
             </div>
 
             <div className="w-[280px] h-[1px] bg-[#E4E4EB] rounded-[10px] my-[16px]"></div>
-          
+
 
             {/* Price Main */}
             <div className="price-main">
@@ -187,7 +189,7 @@ const Sidebar = () => {
                 <Slider
                   range
                   min={0} max={100000}
-                  defaultValue={[10000, 30000]}
+                  defaultValue={[0, 100000]}
                   onChange={(value) => dispatch(getPriceCar(value))}
                   onAfterChange={() => dispatch(fetchCars())}
 
@@ -215,7 +217,7 @@ const Sidebar = () => {
                 <Slider
                   range
                   min={1990} max={2022}
-                  defaultValue={[2011, 2022]}
+                  defaultValue={[1990, 2022]}
                   onChange={(value) => dispatch(getYearCar(value))}
                   onAfterChange={() => dispatch(fetchCars())}
 
@@ -247,9 +249,10 @@ const Sidebar = () => {
               </div>
             </div>
 
-            <DropdownComp name={"Style"} data={bodystyle} data2={exteriorcolor} data3={interiorcolor} intitle1={"Body Type"} intitle2={"EXTERIOR COLOR"} intitle3={"INTERIOR COLOR"} />
-            <DropdownComp name={"Performance"} data={transmission} data2={drive} data3={fuel} intitle1={"TRANSMISSION"} intitle2={"DRIVE TRAIN"} intitle3={"FUEL TYPE"} />
-            <DropdownComp name={"Features"} data={Object.entries(feature)[0][1]} data2={Object.entries(feature)[1][1]} data3={Object.entries(feature)[2][1]} data4={Object.entries(feature)[3][1]} data5={Object.entries(feature)[4][1]} intitle1={"INTERIOR FEATURES"} intitle2={"TECHNOLOGY FEATURES"} intitle3={"SAFETY FEATURES"} intitle4={"EXTERIOR FEATURES"} intitle5={"OTHERS"} />
+            {/* <DropdownComp name={"Style"} data={ { "Body Type" : bodystyle, "EXTERIOR COLOR": exteriorcolor, "INTERIOR COLOR": interiorcolor }} /> */}
+            <DropdownComp setFunction1={setBodyData} setFunction2={setExt} setFunction3={setInt} state1={bodyStyleData} state2={exteriorData} state3={interiorData} name={"Style"} data={bodystyle} data2={exteriorcolor} data3={interiorcolor} intitle1={"Body Type"} intitle2={"EXTERIOR COLOR"} intitle3={"INTERIOR COLOR"} />
+            <DropdownComp setFunction1={setTransmission} setFunction2={setDrive} setFunction3={setFuel} state1={transmissionData} state2={driveData} state3={fuelData} name={"Performance"} data={transmission} data2={drive} data3={fuel} intitle1={"TRANSMISSION"} intitle2={"DRIVE TRAIN"} intitle3={"FUEL TYPE"} />
+            <DropdownComp setFunction1={setFeaturedata} setFunction2={setFeaturedata} setFunction3={setFeaturedata} state1={featureData} state2={featureData} state3={featureData} name={"Features"} data={Object.entries(feature)[0][1]} data2={Object.entries(feature)[1][1]} data3={Object.entries(feature)[2][1]} data4={Object.entries(feature)[3][1]} data5={Object.entries(feature)[4][1]} intitle1={"INTERIOR FEATURES"} intitle2={"TECHNOLOGY FEATURES"} intitle3={"SAFETY FEATURES"} intitle4={"EXTERIOR FEATURES"} intitle5={"OTHERS"} />
           </div>
         </div>
       </div>

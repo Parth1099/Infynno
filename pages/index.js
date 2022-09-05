@@ -35,24 +35,24 @@ export const getServerSideProps = wrapper.getServerSideProps(
     const model = "https://autodigg.com/ad-api/cars/list?return=model";
 
     const bodystyleRes =
-      "https://autodigg.com/ad-api/cars/list?make=&model=&usedCar=true&car_type=Used+car&page=1&radius=100&year=2011,2021&zip=&return=body_type";
+      "https://autodigg.com/ad-api/cars/list?make=&model=&usedCar=true&car_type=Used+car&page=1&radius=100&year=1990,2021&zip=&price_from=0&price_to=100000&return=body_type";
 
     const exteriorcolorRes =
-      "https://autodigg.com/ad-api/cars/list?body_type=&make=&model=&usedCar=true&car_type=Used+car&page=1&radius=100&year=2011,2021&zip=&return=exterior_color";
+      "https://autodigg.com/ad-api/cars/list?body_type=&make=&model=&usedCar=true&car_type=Used+car&page=1&radius=100&year=1990,2021&zip=&price_from=0&price_to=100000&return=exterior_color";
 
     const interiorcolorRes =
-      "https://autodigg.com/ad-api/cars/list?body_type=&make=&model=&usedCar=true&car_type=Used+car&page=1&radius=100&year=2011,2021&zip=&return=interior_color";
+      "https://autodigg.com/ad-api/cars/list?body_type=&make=&model=&usedCar=true&car_type=Used+car&page=1&radius=100&year=1990,2021&zip=&price_from=0&price_to=100000&return=interior_color";
 
     const trasmissionRes =
-      "https://autodigg.com/ad-api/cars/list?body_type=&make=&model=&usedCar=true&car_type=Used+car&page=1&radius=100&year=2011,2021&zip=&return=transmission";
+      "https://autodigg.com/ad-api/cars/list?body_type=&make=&model=&usedCar=true&car_type=Used+car&page=1&radius=100&year=1990,2021&zip=&price_from=0&price_to=100000&return=transmission";
 
     const driveRes =
-      "https://autodigg.com/ad-api/cars/list?body_type=&make=&model=&usedCar=true&car_type=Used+car&page=1&radius=100&year=2011,2021&zip=&return=drivetrain";
+      "https://autodigg.com/ad-api/cars/list?body_type=&make=&model=&usedCar=true&car_type=Used+car&page=1&radius=100&year=1990,2021&zip=&price_from=0&price_to=100000&return=drivetrain";
 
     const fueltypeRes =
-      "https://autodigg.com/ad-api/cars/list?body_type=&make=&model=&usedCar=true&car_type=Used+car&page=1&radius=100&year=2011,2021&zip=&return=fuel_type";
+      "https://autodigg.com/ad-api/cars/list?body_type=&make=&model=&usedCar=true&car_type=Used+car&page=1&radius=100&year=1990,2021&zip=&price_from=0&price_to=100000&return=fuel_type";
 
-    const featureRes = "https://autodigg.com/ad-api/cars/list?body_type=&make=&model=&usedCar=true&car_type=Used+car&page=1&radius=100&year=2011,2021&zip=&return=features";
+    const featureRes = "https://autodigg.com/ad-api/cars/list?body_type=&make=&model=&usedCar=true&car_type=Used+car&page=1&radius=100&year=1990,2021&zip=&price_from=0&price_to=100000&return=features";
     const data = await axios.all([
       axios.get(res),
       axios.get(main),

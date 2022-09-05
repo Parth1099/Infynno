@@ -7,39 +7,47 @@ const initialState = {
     count: 0,
     make: null,
     model: null,
-    bodystyle: null,
+    bodystyle: [],
     exteriorcolor: null,
     interiorcolor: null,
     transmission: null,
     drive: null,
     fuel: null,
-    feature : null,
+    feature: null,
     page: "1",
     isLoading: false,
     carType: ["New Car", "Used Car"],
     range: 100,
     makeCar: [],
     modelCar: [],
-    bodyStyleCar: [],
+    bodyStyleData: [],
     price: [0, 100000],
-    year: [1990, 2021]
+    year: [1990, 2021],
+    featureData: [],
+    transmissionData: [],
+    exteriorData: [],
+    interiorData: [],
+    driveData: [],
+    fuelData: [],
+
 
 
 };
 export const fetchCars = createAsyncThunk(
     "homePage/fetch", async (page, { getState }) => {
         const state = getState().homeSlice;
-        console.log(state);
+        // console.log(state);
         try {
-            const url = `https://autodigg.com/ad-api/cars/list?body_type=${state.bodyStyleCar}&model=${state.modelCar}&usedCar=false&car_type=${state.carType},Certified+pre-owned&make=${state.makeCar}&page=${state.page}&radius=${state.range}&price_from=${state.price[0]}&price_to=${state.price[1]}&year_from=${state.year[0]}&year_to=${state.year[1]}&newCar=false`;
-            const counturl = `https://autodigg.com/ad-api/cars/list?body_type=${state.bodyStyleCar}&model=${state.modelCar}&usedCar=false&car_type=${state.carType},Certified+pre-owned&make=${state.makeCar}&page=${state.page}&radius=${state.range}&price_from=${state.price[0]}&price_to=${state.price[1]}&year_from=${state.year[0]}&year_to=${state.year[1]}&newCar=false&return=count`;
+            // const url = `https://autodigg.com/ad-api/cars/list?features=${state.featuresData}&transmission=${state.transmissionsData}&fuel_type=${state.fuelTypeData}&drivetrain=${state.dtrainsData}&interior_color=${state.intcolorData}&exterior_color=${state.extcolorData}&year_from=${state.year[0]}&year_to=${state.year[1]}&price_from=${state.price[0]}&price_to=${state.price[1]}&body_type=${state.bodyTypeData}&model=${state.modelData}&usedCar=false&car_type=${state.carTypes},Certified+pre-owned&make=${state.makeCars}&page=${state.page}&radius=${state.radius}&newCar=false`;
+            const url = `https://autodigg.com/ad-api/cars/list?features=${state.featureData}&body_type=${state.bodyStyleData}&transmission=${state.transmissionData}&fuel_type=${state.fuelData}&drivetrain=${state.driveData}&interior_color=${state.interiorData}&exterior_color=${state.exteriorData}&model=${state.modelCar}&usedCar=false&car_type=${state.carType},Certified+pre-owned&make=${state.makeCar}&page=${state.page}&radius=${state.range}&price_from=${state.price[0]}&price_to=${state.price[1]}&year_from=${state.year[0]}&year_to=${state.year[1]}&newCar=false`;
+            const counturl = `https://autodigg.com/ad-api/cars/list?features=${state.featureData}&body_type=${state.bodyStyleData}&transmission=${state.transmissionData}&fuel_type=${state.fuelData}&drivetrain=${state.driveData}&interior_color=${state.interiorData}&exterior_color=${state.exteriorData}&model=${state.modelCar}&usedCar=false&car_type=${state.carType},Certified+pre-owned&make=${state.makeCar}&page=${state.page}&radius=${state.range}&price_from=${state.price[0]}&price_to=${state.price[1]}&year_from=${state.year[0]}&year_to=${state.year[1]}&newCar=false&return=count`;
             const modelUrl = `https://autodigg.com/ad-api/cars/list?make=${state.makeCar}&return=model`;
             const data = await axios.all([
                 axios.get(url),
                 axios.get(counturl),
                 axios.get(modelUrl)
             ])
-            console.log(data, "thungggggdatatatata")
+            // console.log(data, "thungggggdatatatata")
             return data
 
         } catch (error) {
@@ -81,7 +89,7 @@ const homeSlice = createSlice({
         getFuel: (state, action) => {
             state.fuel = action.payload;
         },
-        getFeature : (state , action) =>{
+        getFeature: (state, action) => {
             state.feature = action.payload;
         },
         getPagination: (state, action) => {
@@ -108,9 +116,28 @@ const homeSlice = createSlice({
         getYearCar: (state, action) => {
             state.year = action.payload
         },
-
+        setFeaturedata: (state, action) => {
+            state.featureData = action.payload
+        },
+        setBodyData: (state, action) => {
+            state.bodyStyleData = action.payload
+        },
+        setTransmission: (state, action) => {
+            state.transmissionData = action.payload
+        },
+        setInt: (state, action) => {
+            state.interiorData = action.payload
+        },
+        setExt: (state, action) => {
+            state.exteriorData = action.payload
+        },
+        setDrive: (state, action) => {
+            state.driveData = action.payload
+        },
+        setFuel: (state, action) => {
+            state.fuelData = action.payload
+        },
     },
-
     extraReducers: {
         [HYDRATE]: (state, action) => {
             state.car = action.payload.homeSlice.car;
@@ -140,7 +167,5 @@ const homeSlice = createSlice({
         },
     },
 });
-
-export const { getCars, getPagination, getYearCar,getFeature, getRange, getPriceCar, getBodystyleCar, getmodelCar, getMakedata, getCarType, getCount, getMake, getModel, getBodystyle, getInteriorcolor, getExteriorcolor, getTrasmission, getDrive, getFuel } = homeSlice.actions;
-
+export const { getCars, getPagination, setBodyData, setTransmission, setFeaturedata, setInt, setExt, setDrive, setFuel, getYearCar, getFeature, getRange, getPriceCar, getBodystyleCar, getmodelCar, getMakedata, getCarType, getCount, getMake, getModel, getBodystyle, getInteriorcolor, getExteriorcolor, getTrasmission, getDrive, getFuel } = homeSlice.actions;
 export default homeSlice.reducer;
