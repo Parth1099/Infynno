@@ -1,17 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;800&family=Montserrat&family=Poppins&display=swap");
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import "~react-image-gallery/styles/css/image-gallery.css";
 
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;800&family=Montserrat&family=Poppins&display=swap");
 
 html,
 body {
   padding: 0;
   margin: 0;
   /* font-family: 'Poppins', sans-serif; */
-  font-family: "Poppins",;
+  font-family: "Poppins";
   background-color: #fafafc;
   /* display: flex;
   justify-content: center;
@@ -29,29 +30,33 @@ a {
 .btn-shadow {
   background: linear-gradient(147.14deg, #ff8800 6.95%, #e63535 93.05%);
 }
-.rc-slider-rail { 
-  
-  background:#EBEBF0 !important;
-  height: 6px !important; 
-  border-radius: 10px; 
-}  
+.rc-slider-rail {
+  background: #ebebf0 !important;
+  height: 6px !important;
+  border-radius: 10px;
+}
 .rc-slider-track {
- 
   border-radius: 10px;
   height: 6px !important;
-  background: linear-gradient(147.14deg, #FF8800 6.95%, #E63535 93.05%) !important;
+  background: linear-gradient(
+    147.14deg,
+    #ff8800 6.95%,
+    #e63535 93.05%
+  ) !important;
 }
 .rc-slider-handle {
   width: 20px !important;
   height: 20px !important;
   margin-top: -7px !important;
-  background: linear-gradient(147.14deg, #FF8800 6.95%, #E63535 93.05%) !important;
-  border: 2px solid #FFFFFF !important;
+  background: linear-gradient(
+    147.14deg,
+    #ff8800 6.95%,
+    #e63535 93.05%
+  ) !important;
+  border: 2px solid #ffffff !important;
   box-shadow: 0px 3px 7px -1px rgba(254, 110, 6, 0.46) !important;
   border-radius: 20px !important;
-  
 }
-
 
 .image-gallery-image {
   width: auto !important;
@@ -80,8 +85,6 @@ a {
   border-radius: 8px !important;
 }
 
-
-
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -91,4 +94,3 @@ a {
     background: black;
   }
 }
-
