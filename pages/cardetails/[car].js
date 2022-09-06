@@ -38,23 +38,29 @@ const Car = ({ carDetails }) => {
     const carfeature = carDetails.features1.split(",")
     return (
         <>
-        <Head>
-      
+            <Head>
 
-        <meta
-          property="og:title"
-          content="asdfasdfadsfads"
-        />
 
-        <meta
-          property="og:description"
-          content="DES" 
-        />
+                <meta
+                    property="og:title"
+                    content={carDetails.make}
+                />
 
-        {/* <meta property="og:image:width" content="1200" /> */}
+                <meta
+                    property="og:description"
+                    content={carDetails.exterior_color}
+                />
 
-        {/* <meta property="og:image:height" content="630" /> */}
-      </Head>
+                <meta
+                    property="og:image"
+                    content={carDetails.photos[0]}
+                />
+
+
+                {/* <meta property="og:image:width" content="1200" /> */}
+
+                {/* <meta property="og:image:height" content="630" /> */}
+            </Head>
             <section className='max-w-[1440px] mx-auto '>
                 <div className="details-main">
                     <div className="detail-main-one bg-white">
@@ -73,11 +79,11 @@ const Car = ({ carDetails }) => {
                                         {/* {car} */}
                                     </div>
                                     <WhatsappShareButton
-                                        url={'https://autodegg-5iijezd75-parth1099.vercel.app/cardetails/KL8CB6SA4NC026597'} >
+                                    >
                                         <WhatsappIcon size={32} round />
                                         {/* <p>share</p> */}
                                     </WhatsappShareButton>
-                                    
+
                                 </div>
                             </div>
                             <div className="arrow-right flex gap-6 justify-center items-center">
