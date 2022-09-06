@@ -75,6 +75,7 @@ const Car = ({ carDetails }) => {
                                     <WhatsappShareButton
                                         url={'http://localhost:3000'} >
                                         <WhatsappIcon size={32} round />
+                                        <p>share</p>
                                     </WhatsappShareButton>
                                 </div>
                             </div>
