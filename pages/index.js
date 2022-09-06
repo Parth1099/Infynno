@@ -16,11 +16,7 @@ import {
   getFeature,
 } from "../store/homePageslice";
 
-// const Main = dynamic(() => import("../Component/Main"),{
-//   loading :() => <p>Loading..</p>,
-//   ssr:false,
-// }
-//  )
+
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async () => {
@@ -78,16 +74,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
     store.dispatch(getDrive(data[8].data));
     store.dispatch(getFuel(data[9].data));
     store.dispatch(getFeature(data[10].data));
-    // store.dispatch(getCars(maindata))
-    // store.dispatch(getCount(data))
-    // store.dispatch(getMake(mainmake))
-    // store.dispatch(getModel(modelres))
-    // store.dispatch(getBodystyle(bodystyle))
-    // store.dispatch(getExteriorcolor(exteriorcolor))
-    // store.dispatch(getInteriorcolor(interiorcolor))
-    // store.dispatch(getTrasmission(trasmission))
-    // store.dispatch(getDrive(drive))
-    // store.dispatch(getFuel(fuel))
+
   }
 );
 

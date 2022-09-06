@@ -1,8 +1,7 @@
 import React from "react";
 
 const CheckBox = ({chk_val}) => {
-    // console.log(key,"key")
-    // console.log(value,"VALUE")
+
     console.log(chk_val[0]," : VALUE")
     return (
         <div>
