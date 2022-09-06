@@ -1,9 +1,22 @@
 import React from 'react'
 import Image from "next/image";
 import axios from "axios"
+import {
+    FacebookShareButton,
+    FacebookIcon,
+    PinterestShareButton,
+    PinterestIcon,
+    RedditShareButton,
+    RedditIcon,
+    WhatsappShareButton,
+    WhatsappIcon,
+    LinkedinShareButton,
+    LinkedinIcon,
+} from 'next-share';
 import Gallery from "../../Component/Gallery"
 
 import { useRouter } from "next/router"
+import Link from 'next/link';
 
 export async function getServerSideProps(context) {
     const { car } = context.params;
@@ -23,13 +36,32 @@ const Car = ({ carDetails }) => {
     const carfeature = carDetails.features1.split(",")
     return (
         <>
+        <Head>
+        <meta  />
+
+        <meta
+          property="og:title"
+          content="JAJKSJDKJSDKF"
+        />
+
+        <meta
+          property="og:description"
+          content="DES" 
+        />
+
+        <meta property="og:image:width" content="1200" />
+
+        <meta property="og:image:height" content="630" />
+      </Head>
             <section className='max-w-[1440px] mx-auto '>
                 <div className="details-main">
                     <div className="detail-main-one bg-white">
                         <div className="arrow-main flex justify-between h-[160px] items-center px-[60px]">
                             <div className="arrow-left flex gap-4">
-                                <div className="arrow-icon">
-                                    <Image src="/Images/leftarrow.png" height={60} width={60} />
+                                <div className="arrow-icon cursor-pointer">
+                                    <Link href="/">
+                                        <Image src="/Images/leftarrow.png" height={60} width={60} />
+                                    </Link>
                                 </div>
                                 <div className="arrow-icon-right flex flex-col gap-2">
                                     <div className="arrow-icon-right-top font-[700] text-[32px] leading-[44px] text-[#28293D]">{carDetails.year} {carDetails.make} {carDetails.model}</div>
@@ -38,6 +70,10 @@ const Car = ({ carDetails }) => {
                                         <p>{carDetails.city} {carDetails.state}</p>
                                         {/* {car} */}
                                     </div>
+                                    <WhatsappShareButton
+                                        url={'http://localhost:3000'} >
+                                        <WhatsappIcon size={32} round />
+                                    </WhatsappShareButton>
                                 </div>
                             </div>
                             <div className="arrow-right flex gap-6 justify-center items-center">

@@ -16,8 +16,6 @@ import {
   getFeature,
 } from "../store/homePageslice";
 
-
-
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async () => {
     const res =
@@ -48,7 +46,8 @@ export const getServerSideProps = wrapper.getServerSideProps(
     const fueltypeRes =
       "https://autodigg.com/ad-api/cars/list?body_type=&make=&model=&usedCar=true&car_type=Used+car&page=1&radius=100&year=1990,2021&zip=&price_from=0&price_to=100000&return=fuel_type";
 
-    const featureRes = "https://autodigg.com/ad-api/cars/list?body_type=&make=&model=&usedCar=true&car_type=Used+car&page=1&radius=100&year=1990,2021&zip=&price_from=0&price_to=100000&return=features";
+    const featureRes =
+      "https://autodigg.com/ad-api/cars/list?body_type=&make=&model=&usedCar=true&car_type=Used+car&page=1&radius=100&year=1990,2021&zip=&price_from=0&price_to=100000&return=features";
     const data = await axios.all([
       axios.get(res),
       axios.get(main),
@@ -74,7 +73,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
     store.dispatch(getDrive(data[8].data));
     store.dispatch(getFuel(data[9].data));
     store.dispatch(getFeature(data[10].data));
-
   }
 );
 
