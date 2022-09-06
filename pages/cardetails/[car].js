@@ -39,11 +39,11 @@ const Car = ({ carDetails }) => {
     return (
         <>
         <Head>
-        <meta  />
+      
 
         <meta
           property="og:title"
-          content="JAJKSJDKJSDKF"
+          content="asdfasdfadsfads"
         />
 
         <meta
@@ -51,9 +51,9 @@ const Car = ({ carDetails }) => {
           content="DES" 
         />
 
-        <meta property="og:image:width" content="1200" />
+        {/* <meta property="og:image:width" content="1200" /> */}
 
-        <meta property="og:image:height" content="630" />
+        {/* <meta property="og:image:height" content="630" /> */}
       </Head>
             <section className='max-w-[1440px] mx-auto '>
                 <div className="details-main">
