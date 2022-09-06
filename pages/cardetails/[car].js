@@ -73,10 +73,11 @@ const Car = ({ carDetails }) => {
                                         {/* {car} */}
                                     </div>
                                     <WhatsappShareButton
-                                        url={'http://localhost:3000'} >
+                                         >
                                         <WhatsappIcon size={32} round />
                                         {/* <p>share</p> */}
                                     </WhatsappShareButton>
+                                    
                                 </div>
                             </div>
                             <div className="arrow-right flex gap-6 justify-center items-center">
