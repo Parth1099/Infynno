@@ -73,7 +73,7 @@ const Car = ({ carDetails }) => {
                                         {/* {car} */}
                                     </div>
                                     <WhatsappShareButton
-                                         >
+                                        url={'https://autodegg-5iijezd75-parth1099.vercel.app/cardetails/KL8CB6SA4NC026597'} >
                                         <WhatsappIcon size={32} round />
                                         {/* <p>share</p> */}
                                     </WhatsappShareButton>
